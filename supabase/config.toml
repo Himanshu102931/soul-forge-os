@@ -1,0 +1,4 @@
+project_id = "abugumajinzeoorgoxrw"
+
+[functions.drill-sergeant]
+verify_jwt = false

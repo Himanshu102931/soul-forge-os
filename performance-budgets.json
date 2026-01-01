@@ -1,0 +1,87 @@
+{
+  "budgets": {
+    "description": "Performance budgets for Life OS app",
+    "timestamp": "2025-01-15",
+    "metrics": {
+      "bundleSize": {
+        "total": {
+          "target": "500 kB",
+          "current": "452.76 kB",
+          "status": "✅ PASS",
+          "headroom": "47.24 kB (10.4%)"
+        },
+        "js": {
+          "target": "450 kB",
+          "current": "452.76 kB",
+          "status": "⚠️ SLIGHTLY OVER",
+          "overage": "2.76 kB (0.6%)"
+        },
+        "css": {
+          "target": "50 kB",
+          "current": "14.79 kB",
+          "status": "✅ PASS",
+          "headroom": "35.21 kB (70.4%)"
+        }
+      },
+      "lighthouse": {
+        "performance": {
+          "target": "≥ 90",
+          "description": "Overall performance score"
+        },
+        "fcp": {
+          "target": "< 1.5s",
+          "description": "First Contentful Paint"
+        },
+        "lcp": {
+          "target": "< 2.5s",
+          "description": "Largest Contentful Paint"
+        },
+        "tti": {
+          "target": "< 3.0s",
+          "description": "Time to Interactive"
+        },
+        "cls": {
+          "target": "< 0.1",
+          "description": "Cumulative Layout Shift"
+        },
+        "tbt": {
+          "target": "< 300ms",
+          "description": "Total Blocking Time"
+        },
+        "si": {
+          "target": "< 3.0s",
+          "description": "Speed Index"
+        }
+      },
+      "accessibility": {
+        "target": "≥ 95",
+        "description": "WCAG 2.1 AAA compliance"
+      },
+      "bestPractices": {
+        "target": "≥ 95",
+        "description": "Web best practices"
+      },
+      "seo": {
+        "target": "≥ 90",
+        "description": "Search engine optimization"
+      }
+    },
+    "recommendations": {
+      "critical": [
+        "Reduce JS bundle size by 2.76 kB to meet 450 kB target",
+        "Implement code splitting for routes to improve initial load",
+        "Remove console.logs in production build"
+      ],
+      "important": [
+        "Add dynamic imports for heavy features (Analytics, Achievements)",
+        "Lazy load images and icons",
+        "Enable brotli compression on server"
+      ],
+      "nice-to-have": [
+        "Add service worker for offline support",
+        "Implement virtual scrolling for long lists",
+        "Optimize animations for 60fps"
+      ]
+    }
+  }
+}
