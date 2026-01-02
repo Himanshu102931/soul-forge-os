@@ -94,10 +94,14 @@ export const queryKeys = {
 /**
  * Stale time overrides for specific query types
  * Adjust based on data volatility
+ * 
+ * OPTIMIZATION: Increased realtime from 30s to 2min to prevent excessive refetches
+ * that were causing 4-5 second load delays and slow page transitions
  */
 export const staleTimes = {
   // Real-time data (update frequently)
-  realtime: 30 * 1000,           // 30 seconds
+  // Changed from 30 seconds to 2 minutes to reduce aggressive refetching
+  realtime: 2 * 60 * 1000,       // 2 minutes (was 30 seconds - too aggressive)
   
   // Semi-static data (habits, profile)
   semiStatic: 5 * 60 * 1000,     // 5 minutes (default)

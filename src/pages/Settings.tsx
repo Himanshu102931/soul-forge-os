@@ -129,7 +129,9 @@ export default function Settings() {
       }
       setDialogOpen(false);
     } catch (error) {
-      toast({ title: 'Error', description: 'Failed to save habit', variant: 'destructive' });
+      const errorMessage = error instanceof Error ? error.message : 'Failed to save habit';
+      console.error('[Settings] Habit save error:', error);
+      toast({ title: 'Error', description: errorMessage, variant: 'destructive' });
     }
   };
 

@@ -240,6 +240,13 @@ export function useCreateHabit() {
     mutationFn: async (habit: Omit<Habit, 'id' | 'user_id' | 'created_at' | 'updated_at'>) => {
       if (!user) throw new Error('Not authenticated');
       
+      // Log attempt for debugging
+      console.log('[Habit Creation] Attempting to create:', {
+        title: habit.title,
+        userId: user.id,
+        timestamp: new Date().toISOString(),
+      });
+      
       const { data, error } = await supabase
         .from('habits')
         .insert({
@@ -249,13 +256,25 @@ export function useCreateHabit() {
           sort_order: habit.sort_order,
           archived: habit.archived,
           is_bad_habit: habit.is_bad_habit,
-          xp_reward: habit.xp_reward,
+          xp_reward: habit.xp_reward || 10,
           user_id: user.id,
         })
         .select()
         .single();
       
-      if (error) throw error;
+      if (error) {
+        console.error('[Habit Creation] Failed with error:', {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint,
+          userId: user.id,
+          habitTitle: habit.title,
+        });
+        throw new Error(error.message || 'Failed to create habit');
+      }
+      
+      console.log('[Habit Creation] Success:', data.id);
       return data;
     },
     onMutate: async (newHabit) => {
