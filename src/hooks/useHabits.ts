@@ -238,35 +238,35 @@ export function useCreateHabit() {
 
   return useMutation({
     mutationFn: async (habit: Omit<Habit, 'id' | 'user_id' | 'created_at' | 'updated_at'>) => {
-      if (!user) throw new Error('Not authenticated');
+      if (!user || !user.id) {
+        console.error('[Habit Creation] Not authenticated - user is:', user);
+        throw new Error('You must be logged in to create habits');
+      }
       
       // Log attempt for debugging
       console.log('[Habit Creation] Attempting to create:', {
         title: habit.title,
         userId: user.id,
-        xpReward: habit.xp_reward,
+        userEmail: user.email,
         timestamp: new Date().toISOString(),
       });
       
-      const insertData: any = {
-        title: habit.title,
-        description: habit.description,
-        frequency_days: habit.frequency_days,
-        sort_order: habit.sort_order,
-        archived: habit.archived,
-        is_bad_habit: habit.is_bad_habit,
-        user_id: user.id,
-      };
-      
-      // Only add xp_reward if it exists in the habit object
-      // This prevents schema cache issues
-      if (habit.xp_reward !== undefined && habit.xp_reward !== null) {
-        insertData.xp_reward = habit.xp_reward;
-      }
-      
+      // NOTE: xp_reward column may not exist in older Supabase schemas
+      // Only send it if we're certain it exists in the database
+      // For now, we omit it and let database defaults apply
       const { data, error } = await supabase
         .from('habits')
-        .insert(insertData)
+        .insert({
+          title: habit.title,
+          description: habit.description,
+          frequency_days: habit.frequency_days,
+          sort_order: habit.sort_order,
+          archived: habit.archived,
+          is_bad_habit: habit.is_bad_habit,
+          user_id: user.id,
+          // Omitting xp_reward to avoid schema cache issues
+          // The column may not exist in all database versions
+        })
         .select()
         .single();
       
@@ -277,8 +277,8 @@ export function useCreateHabit() {
           details: error.details,
           hint: error.hint,
           userId: user.id,
+          userEmail: user.email,
           habitTitle: habit.title,
-          xpReward: habit.xp_reward,
         });
         throw new Error(error.message || 'Failed to create habit');
       }
