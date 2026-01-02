@@ -244,21 +244,29 @@ export function useCreateHabit() {
       console.log('[Habit Creation] Attempting to create:', {
         title: habit.title,
         userId: user.id,
+        xpReward: habit.xp_reward,
         timestamp: new Date().toISOString(),
       });
       
+      const insertData: any = {
+        title: habit.title,
+        description: habit.description,
+        frequency_days: habit.frequency_days,
+        sort_order: habit.sort_order,
+        archived: habit.archived,
+        is_bad_habit: habit.is_bad_habit,
+        user_id: user.id,
+      };
+      
+      // Only add xp_reward if it exists in the habit object
+      // This prevents schema cache issues
+      if (habit.xp_reward !== undefined && habit.xp_reward !== null) {
+        insertData.xp_reward = habit.xp_reward;
+      }
+      
       const { data, error } = await supabase
         .from('habits')
-        .insert({
-          title: habit.title,
-          description: habit.description,
-          frequency_days: habit.frequency_days,
-          sort_order: habit.sort_order,
-          archived: habit.archived,
-          is_bad_habit: habit.is_bad_habit,
-          xp_reward: habit.xp_reward || 10,
-          user_id: user.id,
-        })
+        .insert(insertData)
         .select()
         .single();
       
@@ -270,6 +278,7 @@ export function useCreateHabit() {
           hint: error.hint,
           userId: user.id,
           habitTitle: habit.title,
+          xpReward: habit.xp_reward,
         });
         throw new Error(error.message || 'Failed to create habit');
       }
