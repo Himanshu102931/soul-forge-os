@@ -1,5 +1,6 @@
 // Weekly AI Insights - Sunday performance summary
-import { loadAIConfig } from './encryption';
+// Now uses server-side proxy for secure API key management
+import { supabase } from '@/integrations/supabase/client';
 
 export interface WeeklyStats {
   totalHabitsCompleted: number;
@@ -23,32 +24,69 @@ export interface WeeklyInsight {
   error?: string;
 }
 
+// Call AI proxy for weekly insights
+async function callAIProxy(prompt: string): Promise<string> {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) throw new Error('Not authenticated');
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Not authenticated');
+
+  const { data: configData } = await supabase
+    .from('user_ai_config')
+    .select('provider')
+    .eq('user_id', user.id)
+    .eq('enabled', true)
+    .single();
+
+  if (!configData) throw new Error('AI not configured');
+
+  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/ai-proxy`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({
+      provider: configData.provider,
+      prompt,
+      maxTokens: 800,
+      temperature: 0.7,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'AI proxy failed');
+  }
+
+  const data = await response.json();
+  return data.text;
+}
+
 // Generate weekly performance summary using AI
 export async function generateWeeklyInsights(stats: WeeklyStats): Promise<WeeklyInsight> {
-  const aiConfig = loadAIConfig();
-  
-  if (!aiConfig.enabled || !aiConfig.apiKey || aiConfig.provider === 'local') {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return generateLocalInsights(stats);
+  }
+
+  const { data: configData } = await supabase
+    .from('user_ai_config')
+    .select('enabled')
+    .eq('user_id', user.id)
+    .eq('enabled', true)
+    .single();
+
+  if (!configData) {
     return generateLocalInsights(stats);
   }
 
   const prompt = buildWeeklyPrompt(stats);
   
   try {
-    let response;
-    switch (aiConfig.provider) {
-      case 'gemini':
-        response = await callGeminiInsights(prompt, aiConfig.apiKey);
-        break;
-      case 'openai':
-        response = await callOpenAIInsights(prompt, aiConfig.apiKey);
-        break;
-      case 'claude':
-        response = await callClaudeInsights(prompt, aiConfig.apiKey);
-        break;
-      default:
-        return generateLocalInsights(stats);
-    }
-    
+    const response = await callAIProxy(prompt);
     return parseInsightsResponse(response);
   } catch (error) {
     console.error('AI insights failed, using local:', error);
@@ -99,70 +137,6 @@ ${strugglingList || 'None'}
 }
 
 Generate the JSON now:`;
-}
-
-async function callGeminiInsights(prompt: string, apiKey: string): Promise<string> {
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 600,
-        },
-      }),
-    }
-  );
-
-  if (!response.ok) throw new Error('Gemini API failed');
-  
-  const data = await response.json();
-  return data.candidates[0]?.content?.parts[0]?.text || '';
-}
-
-async function callOpenAIInsights(prompt: string, apiKey: string): Promise<string> {
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: prompt }],
-      temperature: 0.7,
-      max_tokens: 600,
-    }),
-  });
-
-  if (!response.ok) throw new Error('OpenAI API failed');
-  
-  const data = await response.json();
-  return data.choices[0]?.message?.content || '';
-}
-
-async function callClaudeInsights(prompt: string, apiKey: string): Promise<string> {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify({
-      model: 'claude-3-sonnet-20240229',
-      max_tokens: 600,
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  });
-
-  if (!response.ok) throw new Error('Claude API failed');
-  
-  const data = await response.json();
-  return data.content[0]?.text || '';
 }
 
 function parseInsightsResponse(response: string): WeeklyInsight {

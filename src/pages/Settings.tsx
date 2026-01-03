@@ -6,7 +6,7 @@ import { useAllHabits, useArchiveHabit, useCreateHabit, useUpdateHabit, useDelet
 import { useArchivedTasks, useUnarchiveTask } from '@/hooks/useTasks';
 import { useDataExport, type DateRangeOption } from '@/hooks/useDataExport';
 import { useToast } from '@/hooks/use-toast';
-import { loadAIConfig, saveAIConfig, clearAIConfig, type AIConfig } from '@/lib/encryption';
+import { saveAIConfigToDatabase, loadAIConfigFromDatabase, type AIConfig } from '@/lib/ai-config-db';
 import { testAIConnection } from '@/lib/ai-service';
 import { Settings as SettingsIcon, Brain, AlertTriangle, Zap, Sparkles } from 'lucide-react';
 import { HabitFormDialog } from '@/components/HabitFormDialog';
@@ -57,14 +57,14 @@ export default function Settings() {
   const [exportFormat, setExportFormat] = useState<'json' | 'csv'>('json');
   
   // AI Configuration state
-  const [aiConfig, setAIConfig] = useState<AIConfig>({ provider: 'local', enabled: false });
+  const [aiConfig, setAIConfig] = useState<AIConfig | null>(null);
   const [aiApiKey, setAiApiKey] = useState('');
   const [showApiKey, setShowApiKey] = useState(false);
   const [testingConnection, setTestingConnection] = useState(false);
   
-  // Load AI config on mount
+  // Load AI config from database on mount
   useEffect(() => {
-    loadAIConfig().then(setAIConfig);
+    loadAIConfigFromDatabase().then(setAIConfig);
   }, []);
   
   // Controlled accordion state - starts with none open
@@ -159,29 +159,41 @@ export default function Settings() {
   };
   // AI Configuration handlers
   const handleSaveAIConfig = async () => {
-    try {
-      const newConfig: AIConfig = {
-        provider: aiConfig.provider,
-        apiKey: aiApiKey || aiConfig.apiKey,
-        enabled: aiConfig.enabled,
-      };
-      await saveAIConfig(newConfig);
-      setAIConfig(newConfig);
-      toast({ 
-        title: '✨ AI Configuration Saved', 
-        description: `${aiConfig.provider} is now ${aiConfig.enabled ? 'enabled' : 'disabled'}` 
+    if (!aiConfig) return;
+    
+    if (!aiApiKey) {
+      toast({
+        title: 'API Key Required',
+        description: 'Please enter an API key',
+        variant: 'destructive',
       });
+      return;
+    }
+
+    try {
+      // Save encrypted key to database (server-side storage)
+      await saveAIConfigToDatabase(aiConfig.provider, aiApiKey, aiConfig.enabled);
+      
+      toast({ 
+        title: '✅ Securely Saved', 
+        description: `${aiConfig.provider} API key stored server-side` 
+      });
+      
+      // Clear input field after save
+      setAiApiKey('');
     } catch (error) {
       toast({
         title: 'Failed to save',
-        description: 'Could not save AI configuration',
+        description: error instanceof Error ? error.message : 'Could not save AI configuration',
         variant: 'destructive',
       });
     }
   };
 
   const handleTestConnection = async () => {
-    if (!aiApiKey && !aiConfig.apiKey) {
+    if (!aiConfig) return;
+    
+    if (!aiApiKey) {
       toast({ 
         title: 'API Key Required', 
         description: 'Please enter an API key first', 
@@ -192,10 +204,7 @@ export default function Settings() {
 
     setTestingConnection(true);
     try {
-      const success = await testAIConnection(
-        aiConfig.provider, 
-        aiApiKey || aiConfig.apiKey || ''
-      );
+      const success = await testAIConnection(aiConfig.provider);
       
       if (success) {
         toast({ 
@@ -220,12 +229,27 @@ export default function Settings() {
     }
   };
 
-  const handleClearAIConfig = () => {
-    clearAIConfig();
-    setAIConfig({ provider: 'local', enabled: false });
-    setAiApiKey('');
-    toast({ title: 'AI Config Cleared', description: 'All AI settings have been removed' });
+  const handleClearAIConfig = async () => {
+    if (!aiConfig) return;
+    
+    try {
+      const { deleteAIConfigFromDatabase } = await import('@/lib/ai-config-db');
+      await deleteAIConfigFromDatabase(aiConfig.provider);
+      setAIConfig(null);
+      setAiApiKey('');
+      toast({ 
+        title: 'AI Config Cleared', 
+        description: 'All AI settings have been removed from server' 
+      });
+    } catch (error) {
+      toast({
+        title: 'Failed to clear',
+        description: error instanceof Error ? error.message : 'Unknown error',
+        variant: 'destructive',
+      });
+    }
   };
+  
   const handleLevelChange = async (delta: number) => {
     if (!profile) return;
     const newLevel = Math.max(1, profile.level + delta);

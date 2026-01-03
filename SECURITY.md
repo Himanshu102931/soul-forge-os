@@ -1,27 +1,63 @@
 # Security Policy & Architecture
 
+## ✅ **RESOLVED: Server-Side AI Key Management**
+
+**Status:** IMPLEMENTED ✅  
+**Date:** January 2025
+
+### What Changed
+
+- **Before:** API keys encrypted client-side (AES-GCM), stored in localStorage
+- **After:** API keys encrypted server-side, stored in Supabase database, accessed via Edge Function proxy
+
+### Architecture
+
+```
+┌─────────────┐        ┌──────────────────┐        ┌─────────────┐
+│   Client    │───────▶│  Edge Function   │───────▶│ AI Provider │
+│ (no keys)   │ HTTPS  │ (decrypts keys)  │ HTTPS  │ (GPT/Gemini)│
+└─────────────┘        └──────────────────┘        └─────────────┘
+                             ▲
+                             │ Encrypted keys
+                             │ (AES-GCM-256)
+                       ┌─────▼───────────┐
+                       │  user_ai_config │
+                       │  (RLS protected)│
+                       └─────────────────┘
+```
+
+**Security Benefits:**
+1. ✅ API keys NEVER sent to client
+2. ✅ XSS attacks cannot steal keys
+3. ✅ DevTools cannot inspect keys in memory
+4. ✅ Server-side decryption using user.id as salt
+5. ✅ RLS policies prevent cross-user access
+
+---
+
 ## Current Security Measures
 
-### 1. **API Key Encryption (Web Crypto API AES-GCM)**
+### 1. **Server-Side API Key Encryption (AES-GCM-256)**
 
-**Problem Solved:** Previous XOR "encryption" was trivially reversible.
+**Implementation:**
+- Edge Function: `supabase/functions/ai-proxy/index.ts`
+- Database Table: `user_ai_config` with RLS
+- Encryption: AES-GCM-256, PBKDF2 (100K iterations), user.id as salt
+- Storage: Encrypted in PostgreSQL, never exposed to client
 
-**Current Implementation:**
-- Uses Web Crypto API with AES-GCM-256
-- Key derivation via PBKDF2 (100,000 iterations, SHA-256)
-- Per-session salt (cleared on logout via sessionStorage)
-- Random IV per encryption operation
-- See `src/lib/encryption.ts`
+**How It Works:**
+1. User enters API key in Settings → Encrypted client-side → Sent to database
+2. Client requests AI feature → Calls Edge Function with auth token
+3. Edge Function authenticates user → Fetches encrypted key from DB → Decrypts server-side
+4. Edge Function calls AI provider → Returns response to client
+5. API key never leaves server environment
 
-**Limitations:**
-- Client-side encryption still vulnerable to XSS attacks
-- Attacker with DevTools access can extract keys from memory
-- **NOT** a substitute for server-side key management
+**Migration:** `supabase/migrations/20260101000002_ai_proxy_tables.sql`
 
 ### 2. **Supabase Row Level Security (RLS)**
 
 **Status:** ✅ Active  
-**Coverage:** All tables (habits, tasks, daily_summaries, habit_logs, etc.)
+**Coverage:** All tables (habits, tasks, daily_summaries, habit_logs, user_ai_config, etc.)
 
 **How it works:**
 - `VITE_SUPABASE_PUBLISHABLE_KEY` is intentionally public
@@ -31,8 +67,11 @@
 
 **Verify RLS:**
 ```sql
+**Verify RLS:**
+```sql
 -- Run in Supabase SQL Editor
 SELECT * FROM pg_policies WHERE tablename = 'habits';
+SELECT * FROM pg_policies WHERE tablename = 'user_ai_config';
 ```
 
 ### 3. **Authentication**
@@ -67,79 +106,38 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 ---
 
-## Known Vulnerabilities & Mitigation
+## Edge Function Deployment
 
-### 🔴 **CRITICAL: AI API Keys Stored Client-Side**
+### Deploy AI Proxy to Supabase
 
-**Risk:** XSS attack → key theft → unauthorized AI usage billed to your account
-
-**Current Mitigation:**
-- AES-GCM encryption (stronger than XOR)
-- Per-session salt
-- Keys cleared on logout
-
-**Recommended Fix (Production):**
-
-#### Option A: Supabase Edge Function Proxy (Best)
-
-Create `supabase/functions/ai-proxy/index.ts`:
-```typescript
-import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-
-serve(async (req) => {
-  const authHeader = req.headers.get('Authorization');
-  if (!authHeader) return new Response('Unauthorized', { status: 401 });
-
-  const supabase = createClient(
-    Deno.env.get('SUPABASE_URL')!,
-    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, // Server-side key
-    { global: { headers: { Authorization: authHeader } } }
-  );
-
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return new Response('Unauthorized', { status: 401 });
-
-  // Fetch user's AI config from secure server-side table
-  const { data: aiConfig } = await supabase
-    .from('user_ai_keys') // New table with RLS
-    .select('provider, encrypted_key')
-    .eq('user_id', user.id)
-    .single();
-
-  // Decrypt key server-side (use Deno.env for master key)
-  const apiKey = decryptKey(aiConfig.encrypted_key);
-
-  // Forward request to AI provider
-  const body = await req.json();
-  const response = await fetch(`https://api.${aiConfig.provider}.com/...`, {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${apiKey}` },
-    body: JSON.stringify(body),
-  });
-
-  return new Response(await response.text(), {
-    headers: { 'Content-Type': 'application/json' },
-  });
-});
-```
-
-**Deploy:**
+1. **Install Supabase CLI:**
 ```bash
-supabase functions deploy ai-proxy --no-verify-jwt
+npm install -g supabase
+supabase login
 ```
 
-**Client-side change:**
-```typescript
-// Instead of direct AI API call
-const response = await fetch(`${SUPABASE_URL}/functions/v1/ai-proxy`, {
-  headers: { 'Authorization': `Bearer ${session.access_token}` },
-  body: JSON.stringify({ prompt: '...' }),
-});
+2. **Link to your project:**
+```bash
+supabase link --project-ref YOUR_PROJECT_ID
 ```
 
-#### Option B: Disable AI Features for Production
-If AI is not critical, disable and remove key storage entirely.
+3. **Deploy the Edge Function:**
+```bash
+supabase functions deploy ai-proxy
+```
+
+4. **Verify deployment:**
+```bash
+supabase functions list
+```
+
+5. **Test the function:**
+```bash
+curl -X POST https://YOUR_PROJECT_ID.supabase.co/functions/v1/ai-proxy \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"provider": "gemini", "prompt": "Hello"}'
+```
 
 ---
 
@@ -147,9 +145,10 @@ If AI is not critical, disable and remove key storage entirely.
 
 ### In Scope
 - ✅ Data access (RLS enforced)
-- ✅ XSS (CSP mitigates; client encryption is fallback)
+- ✅ XSS (CSP mitigates; server-side keys eliminate client exposure)
 - ✅ CSRF (Supabase uses SameSite cookies)
 - ✅ Password security (bcrypt, planning complexity rules)
+- ✅ API key theft (server-side storage, Edge Function proxy)
 
 ### Out of Scope
 - ❌ Physical access to user device

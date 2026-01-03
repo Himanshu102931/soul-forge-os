@@ -1,5 +1,6 @@
 // AI-powered habit suggestions based on patterns
-import { loadAIConfig } from './encryption';
+// Now uses server-side proxy for secure API key management
+import { supabase } from '@/integrations/supabase/client';
 
 export interface SuggestionContext {
   completedHabits: Array<{ title: string; frequency: number[]; completionRate: number }>;
@@ -25,32 +26,71 @@ export interface SuggestionResult {
   error?: string;
 }
 
+// Call AI proxy for suggestions
+async function callAIProxy(prompt: string): Promise<string> {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) throw new Error('Not authenticated');
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Not authenticated');
+
+  // Get user's active provider
+  const { data: configData } = await supabase
+    .from('user_ai_config')
+    .select('provider')
+    .eq('user_id', user.id)
+    .eq('enabled', true)
+    .single();
+
+  if (!configData) throw new Error('AI not configured');
+
+  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/ai-proxy`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({
+      provider: configData.provider,
+      prompt,
+      maxTokens: 1000,
+      temperature: 0.7,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'AI proxy failed');
+  }
+
+  const data = await response.json();
+  return data.text;
+}
+
 // Analyze user patterns and suggest new habits or improvements
 export async function generateHabitSuggestions(context: SuggestionContext): Promise<SuggestionResult> {
-  const aiConfig = loadAIConfig();
-  
-  if (!aiConfig.enabled || !aiConfig.apiKey || aiConfig.provider === 'local') {
+  // Check if user has AI configured
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return generateLocalSuggestions(context);
+  }
+
+  const { data: configData } = await supabase
+    .from('user_ai_config')
+    .select('enabled')
+    .eq('user_id', user.id)
+    .eq('enabled', true)
+    .single();
+
+  if (!configData) {
     return generateLocalSuggestions(context);
   }
 
   const prompt = buildSuggestionPrompt(context);
   
   try {
-    let response;
-    switch (aiConfig.provider) {
-      case 'gemini':
-        response = await callGeminiSuggestions(prompt, aiConfig.apiKey);
-        break;
-      case 'openai':
-        response = await callOpenAISuggestions(prompt, aiConfig.apiKey);
-        break;
-      case 'claude':
-        response = await callClaudeSuggestions(prompt, aiConfig.apiKey);
-        break;
-      default:
-        return generateLocalSuggestions(context);
-    }
-    
+    const response = await callAIProxy(prompt);
     return parseSuggestionResponse(response);
   } catch (error) {
     console.error('AI suggestions failed, using local:', error);
@@ -99,70 +139,6 @@ ${habitList}
 }
 
 Generate the JSON now:`;
-}
-
-async function callGeminiSuggestions(prompt: string, apiKey: string): Promise<string> {
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.8,
-          maxOutputTokens: 800,
-        },
-      }),
-    }
-  );
-
-  if (!response.ok) throw new Error('Gemini API failed');
-  
-  const data = await response.json();
-  return data.candidates[0]?.content?.parts[0]?.text || '';
-}
-
-async function callOpenAISuggestions(prompt: string, apiKey: string): Promise<string> {
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: prompt }],
-      temperature: 0.8,
-      max_tokens: 800,
-    }),
-  });
-
-  if (!response.ok) throw new Error('OpenAI API failed');
-  
-  const data = await response.json();
-  return data.choices[0]?.message?.content || '';
-}
-
-async function callClaudeSuggestions(prompt: string, apiKey: string): Promise<string> {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify({
-      model: 'claude-3-sonnet-20240229',
-      max_tokens: 800,
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  });
-
-  if (!response.ok) throw new Error('Claude API failed');
-  
-  const data = await response.json();
-  return data.content[0]?.text || '';
 }
 
 function parseSuggestionResponse(response: string): SuggestionResult {

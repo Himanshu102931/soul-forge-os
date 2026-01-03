@@ -1,6 +1,7 @@
 // AI Service for integrating external AI providers
+// Now uses Edge Function proxy for secure server-side API key management
 import { DailyStats } from './local-roast';
-import { loadAIConfig } from './encryption';
+import { supabase } from '@/integrations/supabase/client';
 import { AIRateLimit } from './ai-rate-limit';
 
 export interface AIResponse {
@@ -17,13 +18,40 @@ export interface AIRequestResult<T = AIResponse> {
   rateLimited?: boolean;
 }
 
-// Estimated costs per 1K tokens (approximate)
-const COST_PER_1K_TOKENS = {
-  'gemini': 0.0005,      // Gemini Pro
-  'openai-3.5': 0.0015,  // GPT-3.5 Turbo
-  'openai-4': 0.03,      // GPT-4
-  'claude': 0.008,       // Claude Sonnet
-};
+// Call AI proxy Edge Function (server-side key management)
+async function callAIProxy(
+  provider: 'gemini' | 'openai' | 'claude',
+  prompt: string,
+  options?: { model?: string; maxTokens?: number; temperature?: number }
+): Promise<AIResponse> {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    throw new Error('Not authenticated');
+  }
+
+  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/ai-proxy`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({
+      provider,
+      prompt,
+      model: options?.model,
+      maxTokens: options?.maxTokens || 200,
+      temperature: options?.temperature || 0.9,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'AI proxy request failed');
+  }
+
+  return await response.json();
+}
 
 // Generate AI-powered drill sergeant roast
 export async function generateAIDrillSergeantRoast(
@@ -43,43 +71,37 @@ export async function generateAIDrillSergeantRoast(
     }
   }
   
-  const config = loadAIConfig();
-  
-  if (!config.enabled || !config.apiKey) {
+  // Get user's configured provider from database
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return { success: false, error: 'Not authenticated' };
+  }
+
+  const { data: configData } = await supabase
+    .from('user_ai_config')
+    .select('provider, enabled')
+    .eq('user_id', user.id)
+    .eq('enabled', true)
+    .single();
+
+  if (!configData) {
     return { success: false, error: 'AI not configured' };
   }
 
   const prompt = buildDrillSergeantPrompt(stats, last7DaysContext);
   
   try {
-    let result;
-    let providerName: 'gemini' | 'openai' | 'claude';
+    // Call server-side AI proxy (keys never exposed to client)
+    const result = await callAIProxy(configData.provider as 'gemini' | 'openai' | 'claude', prompt);
     
-    switch (config.provider) {
-      case 'gemini':
-        result = await callGeminiAPI(prompt, config.apiKey);
-        providerName = 'gemini';
-        break;
-      case 'openai':
-        result = await callOpenAIAPI(prompt, config.apiKey);
-        providerName = 'openai';
-        break;
-      case 'claude':
-        result = await callClaudeAPI(prompt, config.apiKey);
-        providerName = 'claude';
-        break;
-      default:
-        return { success: false, error: 'Unknown AI provider' };
-    }
-    
-    // Record usage
+    // Record usage (server already logged in database)
     if (userId && result.tokensUsed) {
       AIRateLimit.recordRequest(
         userId,
-        providerName,
+        configData.provider,
         'roast',
-        Math.floor(result.tokensUsed * 0.6), // Estimate input tokens (60%)
-        Math.floor(result.tokensUsed * 0.4), // Estimate output tokens (40%)
+        Math.floor(result.tokensUsed * 0.6),
+        Math.floor(result.tokensUsed * 0.4),
         result.provider
       );
     }
@@ -139,135 +161,12 @@ ${last7Days ? `**Last 7 Days Context:** ${JSON.stringify(last7Days)}` : ''}
 Generate a drill sergeant roast:`;
 }
 
-// Gemini API call
-async function callGeminiAPI(prompt: string, apiKey: string): Promise<AIResponse> {
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.9,
-            maxOutputTokens: 200,
-          },
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error?.message || 'Gemini API failed');
-    }
-
-    const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response';
-    
-    return {
-      text,
-      tokensUsed: data.usageMetadata?.totalTokenCount || 0,
-      cost: ((data.usageMetadata?.totalTokenCount || 0) / 1000) * COST_PER_1K_TOKENS['gemini'],
-      provider: 'Gemini',
-    };
-  } catch (error) {
-    throw new Error(`Gemini API error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
-}
-
-// OpenAI API call
-async function callOpenAIAPI(prompt: string, apiKey: string): Promise<AIResponse> {
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: prompt }],
-        max_tokens: 200,
-        temperature: 0.9,
-      }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error?.message || 'OpenAI API failed');
-    }
-
-    const data = await response.json();
-    const text = data.choices?.[0]?.message?.content || 'No response';
-    const tokensUsed = data.usage?.total_tokens || 0;
-
-    return {
-      text,
-      tokensUsed,
-      cost: (tokensUsed / 1000) * COST_PER_1K_TOKENS['openai-3.5'],
-      provider: 'OpenAI GPT-3.5',
-    };
-  } catch (error) {
-    throw new Error(`OpenAI API error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
-}
-
-// Claude API call
-async function callClaudeAPI(prompt: string, apiKey: string): Promise<AIResponse> {
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-3-sonnet-20240229',
-        max_tokens: 200,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error?.message || 'Claude API failed');
-    }
-
-    const data = await response.json();
-    const text = data.content?.[0]?.text || 'No response';
-    const tokensUsed = data.usage?.input_tokens + data.usage?.output_tokens || 0;
-
-    return {
-      text,
-      tokensUsed,
-      cost: (tokensUsed / 1000) * COST_PER_1K_TOKENS['claude'],
-      provider: 'Claude',
-    };
-  } catch (error) {
-    throw new Error(`Claude API error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
-}
-
-// Test AI connection
-export async function testAIConnection(provider: string, apiKey: string): Promise<boolean> {
+// Test AI connection (via proxy)
+export async function testAIConnection(provider: 'gemini' | 'openai' | 'claude'): Promise<boolean> {
   try {
     const testPrompt = 'Say "Connection successful" if you can read this.';
-    
-    switch (provider) {
-      case 'gemini':
-        await callGeminiAPI(testPrompt, apiKey);
-        return true;
-      case 'openai':
-        await callOpenAIAPI(testPrompt, apiKey);
-        return true;
-      case 'claude':
-        await callClaudeAPI(testPrompt, apiKey);
-        return true;
-      default:
-        return false;
-    }
+    await callAIProxy(provider, testPrompt, { maxTokens: 50 });
+    return true;
   } catch (error) {
     console.error('AI connection test failed:', error);
     return false;

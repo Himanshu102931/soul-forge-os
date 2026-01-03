@@ -78,6 +78,46 @@ npm run dev
 	- VITE_SUPABASE_URL
 	- VITE_SUPABASE_PUBLISHABLE_KEY
 
+## Supabase Edge Functions (AI Proxy)
+
+**Why:** Secure server-side API key management. AI keys never exposed to client.
+
+**Setup:**
+```bash
+# Install Supabase CLI
+npm install -g supabase
+
+# Login
+supabase login
+
+# Link to your project
+supabase link --project-ref YOUR_PROJECT_ID
+
+# Deploy Edge Function
+supabase functions deploy ai-proxy
+
+# Verify deployment
+supabase functions list
+```
+
+**Required:**
+- Edge Function: `supabase/functions/ai-proxy/index.ts` ✅ (already created)
+- Database Migration: `supabase/migrations/20260101000002_ai_proxy_tables.sql` ✅ (already created)
+
+**Apply Migration:**
+```bash
+# Push migrations to your Supabase project
+supabase db push
+```
+
+**Test Edge Function:**
+```bash
+curl -X POST https://YOUR_PROJECT_ID.supabase.co/functions/v1/ai-proxy \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"provider": "gemini", "prompt": "Hello", "maxTokens": 50}'
+```
+
 ## Environment variables (.env)
 - VITE_SUPABASE_PROJECT_ID
 - VITE_SUPABASE_PUBLISHABLE_KEY

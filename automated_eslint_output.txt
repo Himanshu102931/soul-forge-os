@@ -1,0 +1,83 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 lint
+> eslint .
+
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\NightlyReviewModal.tsx
+  225:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\SleepCalculator.tsx
+  24:9  error  'bedTotalMinutes' is never reassigned. Use 'const' instead  prefer-const
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\XPFloater.tsx
+  14:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\achievements\AchievementGridHoneycomb.tsx
+  158:9  warning  The 'clampPosition' function makes the dependencies of useEffect Hook (at line 289) change on every render. To fix this, wrap the definition of 'clampPosition' in its own useCallback() Hook  react-hooks/exhaustive-deps
+  158:9  warning  The 'clampPosition' function makes the dependencies of useEffect Hook (at line 304) change on every render. To fix this, wrap the definition of 'clampPosition' in its own useCallback() Hook  react-hooks/exhaustive-deps
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\chronicles\tabs\OverviewTab.tsx
+  84:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\badge.tsx
+  29:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\button.tsx
+  47:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\command.tsx
+  24:11  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\form.tsx
+  129:10  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\navigation-menu.tsx
+  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\sidebar.tsx
+  636:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\sonner.tsx
+  27:19  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\textarea.tsx
+  5:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+E:\App\Habit Checker\soul-forge-os-main\src\components\ui\toggle.tsx
+  37:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\contexts\AuthContext.tsx
+  73:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\contexts\LogicalDateContext.tsx
+  52:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\hooks\useChronicles.ts
+  311:74  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  314:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  318:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  321:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\App\Habit Checker\soul-forge-os-main\src\lib\accessibility.tsx
+   21:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+   66:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  176:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  251:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  314:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  327:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  343:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  370:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  433:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  519:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  547:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+E:\App\Habit Checker\soul-forge-os-main\src\lib\animation-optimizer.ts
+  292:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  417:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\App\Habit Checker\soul-forge-os-main\tailwind.config.ts
+  115:13  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+Γ£û 35 problems (12 errors, 23 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+
