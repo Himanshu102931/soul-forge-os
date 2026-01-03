@@ -35,6 +35,9 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Build for GitHub Pages (sets base to repo path)
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run build -- --base=/${{ github.event.repository.name }}/
 
       - name: Upload artifact
