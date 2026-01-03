@@ -5,14 +5,28 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Sparkles, Loader2 } from 'lucide-react';
+import { Sparkles, Loader2, Check, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
 
 const authSchema = z.object({
   email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  password: z.string()
+    .min(8, 'Password must be at least 8 characters')
+    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+    .regex(/[0-9]/, 'Password must contain at least one number')
+    .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
 });
+
+// Password requirement checks
+const passwordRequirements = [
+  { label: 'At least 8 characters', test: (pwd: string) => pwd.length >= 8 },
+  { label: 'One uppercase letter', test: (pwd: string) => /[A-Z]/.test(pwd) },
+  { label: 'One lowercase letter', test: (pwd: string) => /[a-z]/.test(pwd) },
+  { label: 'One number', test: (pwd: string) => /[0-9]/.test(pwd) },
+  { label: 'One special character', test: (pwd: string) => /[^A-Za-z0-9]/.test(pwd) },
+];
 
 export default function Auth() {
   const { user, loading, signIn, signUp } = useAuth();
@@ -134,6 +148,25 @@ export default function Auth() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {password && (
+                  <div className="mt-2 space-y-1">
+                    {passwordRequirements.map((req, index) => {
+                      const isValid = req.test(password);
+                      return (
+                        <div key={index} className="flex items-center gap-2 text-sm">
+                          {isValid ? (
+                            <Check className="w-4 h-4 text-green-500" />
+                          ) : (
+                            <X className="w-4 h-4 text-muted-foreground" />
+                          )}
+                          <span className={isValid ? 'text-green-500' : 'text-muted-foreground'}>
+                            {req.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
               <Button 
                 className="w-full" 

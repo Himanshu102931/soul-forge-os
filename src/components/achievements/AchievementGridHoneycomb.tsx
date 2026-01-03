@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import type React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
@@ -35,7 +35,7 @@ interface HoneycombProps {
   onAchievementSelect: (achievement: AchievementWithStatus) => void;
 }
 
-export function AchievementGridHoneycomb({
+export const AchievementGridHoneycomb = memo(function AchievementGridHoneycomb({
   achievements,
   onAchievementSelect,
 }: HoneycombProps) {
@@ -514,4 +514,4 @@ export function AchievementGridHoneycomb({
       </div>
     </TooltipProvider>
   );
-}
+});

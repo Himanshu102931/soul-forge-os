@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from 'recharts';
 import { TrendingUp } from 'lucide-react';
@@ -7,7 +8,7 @@ interface CompletionTrendChartProps {
   data: TrendDataPoint[];
 }
 
-export function CompletionTrendChart({ data }: CompletionTrendChartProps): JSX.Element {
+export const CompletionTrendChart = memo(function CompletionTrendChart({ data }: CompletionTrendChartProps): JSX.Element {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -53,4 +54,4 @@ export function CompletionTrendChart({ data }: CompletionTrendChartProps): JSX.E
       </div>
     </motion.div>
   );
-}
+});

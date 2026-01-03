@@ -5,8 +5,9 @@ import { calculateLevelProgress, calculateLevelThreshold } from '@/lib/rpg-utils
 import { Shield, Zap, Flame, Trophy, Star } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { memo } from 'react';
 
-export function CharacterCard() {
+export const CharacterCard = memo(function CharacterCard() {
   const { data: profile, isLoading: profileLoading } = useProfile();
   const { data: userLevel, isLoading: levelLoading } = useUserLevel();
   const { data: stats, isLoading: statsLoading } = useGamificationStats();
@@ -105,4 +106,4 @@ export function CharacterCard() {
       </div>
     </motion.div>
   );
-}
+});
