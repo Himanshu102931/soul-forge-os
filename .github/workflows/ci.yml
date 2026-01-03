@@ -37,12 +37,16 @@ jobs:
       # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
+      
+      # 4. Run tests (placeholder passes until tests are added)
+      - name: Run tests
+        run: npm test
         
-      # 4. Check TypeScript for errors
+      # 5. Check TypeScript for errors
       - name: Type check with TypeScript
         run: npx tsc --noEmit
         
-      # 5. Run ESLint
+      # 6. Run ESLint
       - name: Lint code with ESLint
         run: npm run lint 2>/dev/null || echo "ESLint script not found, skipping"
         continue-on-error: true

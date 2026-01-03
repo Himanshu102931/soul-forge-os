@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Life OS (React + Vite)
 
 ## Project info
 
@@ -60,14 +60,27 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Local development
 
-Simply open [Lovable](https://lovable.dev/projects/8f0c54c3-ed54-4412-9b44-d47918410688) and click on Share -> Publish.
+```sh
+npm ci
+npm run dev
+```
 
-## Can I connect a custom domain to my Lovable project?
+## CI
+- Runs on push/PR: npm test (placeholder), tsc --noEmit, npm run lint, npm run build
 
-Yes, you can!
+## Deployment (GitHub Pages)
+- Workflow: .github/workflows/deploy.yml
+- Public URL: https://himanshu102931.github.io/soul-forge-os/
+- Base path is set automatically for Pages. For a custom domain, set Vite base to "/".
+- Required secrets (repo → Settings → Secrets → Actions):
+	- VITE_SUPABASE_URL
+	- VITE_SUPABASE_PUBLISHABLE_KEY
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Environment variables (.env)
+- VITE_SUPABASE_PROJECT_ID
+- VITE_SUPABASE_PUBLISHABLE_KEY
+- VITE_SUPABASE_URL
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+See .env.example for placeholders.
