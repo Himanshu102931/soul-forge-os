@@ -172,7 +172,7 @@ export default function Settings() {
 
     try {
       // Save encrypted key to database (server-side storage)
-      await saveAIConfigToDatabase(aiConfig.provider, aiApiKey, aiConfig.enabled);
+      await saveAIConfigToDatabase(aiConfig.provider, aiApiKey, aiConfig?.enabled ?? false);
       
       toast({ 
         title: '✅ Securely Saved', 
@@ -368,7 +368,7 @@ export default function Settings() {
             <div className="flex items-center gap-3">
               <Zap className="w-5 h-5 text-primary" />
               <span className="font-semibold">AI Integration</span>
-              {aiConfig.enabled && (
+              {aiConfig && aiConfig.enabled && (
                 <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary">
                   ✨ Active
                 </span>

@@ -281,7 +281,9 @@ export class ErrorBoundary extends React.Component<Props, State> {
   };
 
   handleHome = () => {
-    window.location.href = '/';
+    // Use the public path from Vite config (/soul-forge-os/)
+    const publicPath = import.meta.env.BASE_URL || '/soul-forge-os/';
+    window.location.href = publicPath;
   };
 
   handleClearCache = () => {
