@@ -55,7 +55,7 @@ export default function Index() {
       if (newAchievements.length > 0) {
         // Show the first new achievement
         const achievement = newAchievements[0];
-        setUnlockedAchievement(achievement as Achievement);
+        setUnlockedAchievement(achievement as unknown as Achievement);
       }
       setPreviousAchievementCount(currentCount);
     }

@@ -1,15 +1,13 @@
 import { motion } from 'framer-motion';
 import { Gift } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
+import { LoadingCard } from '@/components/ui/loading-skeleton';
 import { useGamificationStats } from '@/hooks/useGamification';
-import { useStaggeredAnimation, ANIMATION_TIMINGS } from '@/lib/animation-optimizer';
+import { ANIMATION_TIMINGS } from '@/lib/animation-optimizer';
 import { generateAriaLabel } from '@/lib/accessibility';
 
 export function AchievementsCard() {
   const { data: stats, isLoading } = useGamificationStats();
-  const itemCount = (stats?.unlockedAchievements.length || 0) + (stats?.nextAchievements.length || 0);
-  const staggerVariants = useStaggeredAnimation(Math.max(1, itemCount));
 
   if (isLoading) {
     return <LoadingCard rows={3} />;
@@ -40,16 +38,16 @@ export function AchievementsCard() {
       {stats.unlockedAchievements.length > 0 && (
         <div className="mb-6">
           <h4 className="text-sm font-medium mb-3">Unlocked ({stats.unlockedAchievements.length})</h4>
-          <motion.div
-            variants={staggerVariants.container}
-            initial="hidden"
-            animate="show"
-            className="space-y-2"
-          >
-            {stats.unlockedAchievements.map((achievement) => (
+          <div className="space-y-2">
+            {stats.unlockedAchievements.map((achievement, index) => (
               <motion.div
                 key={achievement.id}
-                variants={staggerVariants.item}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: ANIMATION_TIMINGS.DEFAULT,
+                  delay: index * ANIMATION_TIMINGS.STAGGER_ITEM 
+                }}
                 className="flex items-start gap-3 p-3 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border border-yellow-500/20 rounded-lg hover:border-yellow-500/40 transition-colors"
                 role="article"
                 aria-label={generateAriaLabel({
@@ -68,7 +66,7 @@ export function AchievementsCard() {
                 </Badge>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       )}
 
@@ -76,16 +74,16 @@ export function AchievementsCard() {
       {stats.nextAchievements.length > 0 && (
         <div>
           <h4 className="text-sm font-medium mb-3">Next Goals</h4>
-          <motion.div
-            variants={staggerVariants.container}
-            initial="hidden"
-            animate="show"
-            className="space-y-2"
-          >
-            {stats.nextAchievements.map((achievement) => (
+          <div className="space-y-2">
+            {stats.nextAchievements.map((achievement, index) => (
               <motion.div
                 key={achievement.id}
-                variants={staggerVariants.item}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: ANIMATION_TIMINGS.DEFAULT,
+                  delay: index * ANIMATION_TIMINGS.STAGGER_ITEM 
+                }}
                 className="flex items-start gap-3 p-3 bg-secondary/30 border border-border rounded-lg opacity-60 hover:opacity-80 transition-opacity"
                 role="article"
                 aria-label={generateAriaLabel({
@@ -104,7 +102,7 @@ export function AchievementsCard() {
                 </Badge>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       )}
 

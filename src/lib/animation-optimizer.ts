@@ -231,8 +231,9 @@ export const initPerformanceMonitoring = (): void => {
     const LayoutObserver = new PerformanceObserver((list) => {
       let totalCLS = 0;
       for (const entry of list.getEntries()) {
-        if (!entry.hadRecentInput) {
-          totalCLS += entry.value;
+        const layoutEntry = entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number };
+        if (!layoutEntry.hadRecentInput) {
+          totalCLS += layoutEntry.value ?? 0;
         }
       }
       if (totalCLS > 0.1) {

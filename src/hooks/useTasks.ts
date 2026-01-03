@@ -456,10 +456,10 @@ export function useTasksPaginated(
  */
 export function useTodaysTasks() {
   const { user } = useAuth();
-  const { logicalNow } = useLogicalDate();
+  const { logicalDate } = useLogicalDate();
 
   return useQuery({
-    queryKey: ['tasks-today', user?.id, getLogicalDateString(logicalNow)],
+    queryKey: ['tasks-today', user?.id, logicalDate],
     enabled: !!user,
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
