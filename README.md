@@ -85,6 +85,11 @@ npm run dev
 
 See .env.example for placeholders.
 
+## Supabase backups (recommended)
+- Enable daily backups: Supabase Dashboard → Project Settings → Database → Enable Point-in-Time Recovery (PITR) if on Pro plan, or use pg_dump scheduled backups.
+- Test restore: Download a backup and verify you can restore to a test project.
+- For free tier: Manually export via Dashboard → Database → Backups → Download (weekly recommended).
+
 ## Security headers (apply at reverse proxy / CDN when you add one)
 - Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 - X-Content-Type-Options: nosniff
