@@ -13,11 +13,15 @@ const navItems = [
 
 export function Sidebar() {
   return (
-    <aside className="hidden md:flex flex-col w-64 h-screen bg-card border-r border-border fixed left-0 top-0">
+    <aside 
+      className="hidden md:flex flex-col w-64 h-screen bg-card border-r border-border fixed left-0 top-0"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       {/* Logo */}
       <div className="p-6 border-b border-border">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center" aria-hidden="true">
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
           <div>
@@ -36,8 +40,9 @@ export function Sidebar() {
             end={to === '/'}
             className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-muted-foreground hover:bg-secondary transition-colors min-h-11"
             activeClassName="bg-primary/10 text-primary hover:bg-primary/10"
+            aria-label={`Navigate to ${label}`}
           >
-            <Icon className="w-5 h-5 flex-shrink-0" />
+            <Icon className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
             <span className="font-medium">{label}</span>
           </NavLink>
         ))}
