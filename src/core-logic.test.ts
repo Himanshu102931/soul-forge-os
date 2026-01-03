@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 
 // Test utilities
 describe("XP calculation", () => {
@@ -129,7 +129,6 @@ describe("Gamification logic", () => {
     const totalXP = 1250;
     const xpPerLevel = 100;
     const currentLevel = Math.floor(totalXP / xpPerLevel);
-    const nextLevelXP = (currentLevel + 1) * xpPerLevel;
     const progress = ((totalXP - currentLevel * xpPerLevel) / xpPerLevel) * 100;
     expect(progress).toBeCloseTo(50, 1);
   });

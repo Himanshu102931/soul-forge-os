@@ -58,6 +58,13 @@ export async function saveAIConfigToDatabase(
   const encryptedKey = await encryptAPIKey(apiKey, user.id);
 
   // Type assertion needed until database types are regenerated
+  interface UserAIConfig {
+    user_id: string;
+    provider: string;
+    encrypted_key: string;
+    enabled: boolean;
+  }
+  
   const { error } = await (supabase as any)
     .from('user_ai_config')
     .upsert({
@@ -65,7 +72,7 @@ export async function saveAIConfigToDatabase(
       provider,
       encrypted_key: encryptedKey,
       enabled,
-    }, {
+    } as UserAIConfig, {
       onConflict: 'user_id,provider'
     });
 
@@ -77,13 +84,18 @@ export async function loadAIConfigFromDatabase(): Promise<AIConfig | null> {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return null;
 
+  interface ConfigData {
+    provider: string;
+    enabled: boolean;
+  }
+
   // Type assertion needed until database types are regenerated
   const { data, error } = await (supabase as any)
     .from('user_ai_config')
     .select('provider, enabled')
     .eq('user_id', user.id)
     .eq('enabled', true)
-    .single();
+    .single() as Promise<{ data: ConfigData | null; error: any }>;
 
   if (error || !data) return null;
 
@@ -105,7 +117,7 @@ export async function deleteAIConfigFromDatabase(
     .from('user_ai_config')
     .delete()
     .eq('user_id', user.id)
-    .eq('provider', provider);
+    .eq('provider', provider) as Promise<{ error: any }>;
 
   if (error) throw error;
 }
@@ -115,15 +127,20 @@ export async function getConfiguredAIProviders(): Promise<AIConfig[]> {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return [];
 
+  interface ConfigData {
+    provider: string;
+    enabled: boolean;
+  }
+
   // Type assertion needed until database types are regenerated
   const { data, error } = await (supabase as any)
     .from('user_ai_config')
     .select('provider, enabled')
-    .eq('user_id', user.id);
+    .eq('user_id', user.id) as Promise<{ data: ConfigData[] | null; error: any }>;
 
   if (error || !data) return [];
 
-  return data.map((d: any) => ({
+  return data.map((d: ConfigData) => ({
     provider: d.provider as 'gemini' | 'openai' | 'claude',
     enabled: d.enabled,
   }));

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 /**
  * Component Testing Patterns
@@ -211,10 +211,10 @@ describe("Modal Dialog Component Patterns", () => {
     const triggerButton = document.createElement("button");
     triggerButton.textContent = "Open Modal";
     
-    let focusedElement = triggerButton;
+    const focusedElement = triggerButton;
 
     // Simulate modal open (focus moves to modal)
-    let isOpen = true;
+    const isOpen = true;
 
     // Simulate modal close (focus returns to trigger)
     isOpen = false;
@@ -282,7 +282,7 @@ describe("Habit List Component Patterns", () => {
   });
 
   it("should show skeleton loaders while loading", () => {
-    let isLoading = true;
+    const isLoading = true;
     const skeletonCount = isLoading ? 3 : 0;
 
     expect(skeletonCount).toBe(3);
@@ -469,11 +469,11 @@ describe("Select/Dropdown Component Patterns", () => {
 describe("Focus Management Patterns", () => {
   it("should focus input on mount", () => {
     const input = document.createElement("input");
-    input.autoFocus = true;
+    input.autofocus = true;
 
     // In a real component, this happens on mount
-    // For testing: check that autoFocus is set
-    expect(input.autoFocus).toBe(true);
+    // For testing: check that autofocus is set
+    expect(input.autofocus).toBe(true);
   });
 
   it("should move focus to first field with error", () => {
@@ -493,7 +493,8 @@ describe("Focus Management Patterns", () => {
     const currentFocus = openButton;
 
     // Simulate modal open (focus changes)
-    const modal = document.createElement("div");
+    const dialogModal = document.createElement("div");
+    dialogModal.setAttribute("role", "dialog");
 
     // Simulate modal close (restore focus)
     const restoredFocus = openButton;

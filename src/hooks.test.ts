@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 // Hook testing patterns
 describe("Hook patterns", () => {
@@ -56,7 +56,7 @@ describe("Hook patterns", () => {
       state = {
         loading: false,
         error: null,
-        data: { habits: [] },
+        data: null,
       };
 
       expect(state.loading).toBe(false);
