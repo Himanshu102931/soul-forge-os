@@ -32,7 +32,7 @@ export default function Analytics() {
   const { data: rankData } = useUserRank();
 
   // Check if there's any data
-  const hasData = !!(summary?.totalCompletions > 0 || habitStats?.length > 0);
+  const hasData = !!((summary?.totalCompletions ?? 0) > 0 || (habitStats?.length ?? 0) > 0);
 
   return (
     <div className="space-y-6 pb-24 md:pb-8">
@@ -157,7 +157,7 @@ export default function Analytics() {
             <ZenithPathDisplay 
               profile={profile}
               userLevel={userLevel}
-              rankData={rankData}
+              rankData={{ ...rankData, nextRank: rankData.nextRank ?? undefined }}
             />
           )}
 

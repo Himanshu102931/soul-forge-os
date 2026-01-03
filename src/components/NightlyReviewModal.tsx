@@ -382,10 +382,6 @@ export function NightlyReviewModal({ open, onOpenChange }: NightlyReviewModalPro
       }}
       canMakeAIRequest={rateLimiter.canMakeRequest}
       requestsRemaining={rateLimiter.requestsRemaining}
-      monthlyUsage={{
-        requestsThisMonth: rateLimiter.monthlyUsage?.requestsThisMonth || 0,
-        estimatedCost: rateLimiter.monthlyUsage?.estimatedCost || 0,
-      }}
     />,
   ];
 

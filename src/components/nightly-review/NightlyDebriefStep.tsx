@@ -12,7 +12,7 @@ interface DebriefStepProps {
   onGetNewRoast: () => void;
   canMakeAIRequest: boolean;
   requestsRemaining: number;
-  monthlyUsage: {
+  monthlyUsage?: {
     requestsThisMonth: number;
     estimatedCost: number;
   };
@@ -24,7 +24,7 @@ export function NightlyDebriefStep({
   onGetNewRoast,
   canMakeAIRequest,
   requestsRemaining,
-  monthlyUsage,
+  monthlyUsage = { requestsThisMonth: 0, estimatedCost: 0 },
 }: DebriefStepProps): JSX.Element {
   return (
     <div className="space-y-6">

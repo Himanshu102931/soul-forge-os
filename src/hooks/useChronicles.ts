@@ -305,7 +305,7 @@ export function useToggleHistoricalHabit() {
       const previousLogs = queryClient.getQueryData(['day-habit-logs', user?.id, date]);
       
       // Calculate next status
-      const nextStatus = getNextHabitStatus(currentStatus, isBadHabit);
+      const nextStatus = getNextHabitStatus(currentStatus, isBadHabit ?? false);
       
       // Optimistically update the habit logs
       queryClient.setQueryData(['day-habit-logs', user?.id, date], (old: any) => {

@@ -377,7 +377,7 @@ export default function Settings() {
           </AccordionTrigger>
           <AccordionContent className="px-4 pb-4">
             <DangerZoneSection
-              profile={profile}
+              profile={profile ?? undefined}
               xpInput={xpInput}
               onXpInputChange={setXpInput}
               onLevelChange={handleLevelChange}
