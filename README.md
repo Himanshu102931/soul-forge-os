@@ -84,3 +84,29 @@ npm run dev
 - VITE_SUPABASE_URL
 
 See .env.example for placeholders.
+
+## Security headers (apply at reverse proxy / CDN when you add one)
+- Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+- X-Content-Type-Options: nosniff
+- X-Frame-Options: DENY (or SAMEORIGIN if you must embed yourself)
+- Referrer-Policy: strict-origin-when-cross-origin
+- Permissions-Policy: camera=(), microphone=(), geolocation=()
+- Content-Security-Policy (tighten as needed):
+	- default-src 'self';
+	- script-src 'self';
+	- style-src 'self' 'unsafe-inline';
+	- img-src 'self' data: https:;
+	- connect-src 'self' https://*.supabase.co;
+	- font-src 'self' data:;
+	- frame-ancestors 'none';
+	- base-uri 'self'; form-action 'self';
+
+Example (Nginx):
+```
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-Frame-Options "DENY" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" always;
+```
