@@ -1,0 +1,28 @@
+/*
+  # Security Headers for GitHub Pages
+  # These headers apply to all pages served from this directory
+  
+  # Prevent clickjacking attacks
+  X-Frame-Options: DENY
+  
+  # Enforce HTTPS for this site and subdomains
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  
+  # Prevent browsers from guessing MIME types
+  X-Content-Type-Options: nosniff
+  
+  # Enable XSS protection in older browsers
+  X-XSS-Protection: 1; mode=block
+  
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Content Security Policy
+  # - Allows scripts from the same origin and trusted sources (Sentry, analytics)
+  # - Prevents inline scripts (use nonces for necessary inline code)
+  # - Allows styles from the same origin and trusted CDNs
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://o4510645454241792.ingest.de.sentry.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://kbyghqwnlrfjqvstmrnz.supabase.co https://o4510645454241792.ingest.de.sentry.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+
+  # Permissions Policy (Feature Policy)
+  # - Restricts access to sensitive APIs
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
