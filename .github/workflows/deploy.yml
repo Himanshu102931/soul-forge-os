@@ -1,64 +1,55 @@
-name: Deploy to Production
+name: Deploy to GitHub Pages
 
-# Only deploy when pushing to main with a tag
 on:
   push:
     branches: [ main ]
-    tags: [ 'v*' ]
-  workflow_dispatch:  # Allow manual deployment
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Deploy to Production
+  build:
+    name: Build site
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          cache: 'npm'
-      
+          cache: npm
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Type check
         run: npx tsc --noEmit
-        
-      - name: Build for production
-        run: npm run build
-        
-      - name: 📊 Display build info
-        run: |
-          echo "🎯 Production Build Complete"
-          echo ""
-          echo "📦 Bundle Size:"
-          du -sh dist/
-          echo ""
-          echo "📄 Build Contents:"
-          ls -lh dist/
-          echo ""
-          echo "✅ Ready for deployment!"
-          
-      # TODO: Add your deployment steps here
-      # Examples:
-      # - Deploy to Vercel
-      # - Deploy to Netlify
-      # - Deploy to GitHub Pages
-      # - Deploy to AWS S3
-      # - Deploy to Docker
-      
-      - name: Deployment Placeholder
-        run: |
-          echo "📢 Deployment configuration needed!"
-          echo ""
-          echo "Options:"
-          echo "1. Vercel: Add 'uses: amondnet/vercel-action@v25'"
-          echo "2. Netlify: Add 'netlify-cli' deployment"
-          echo "3. GitHub Pages: Add 'actions/deploy-pages@v3'"
-          echo "4. Docker: Create Dockerfile and push to registry"
-          echo ""
-          echo "See DEPLOYMENT_GUIDE.md for details"
+
+      - name: Build for GitHub Pages (sets base to repo path)
+        run: npm run build -- --base=/${{ github.event.repository.name }}/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
