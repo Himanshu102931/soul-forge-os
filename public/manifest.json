@@ -2,13 +2,13 @@
   "name": "Life OS",
   "short_name": "Life OS",
   "description": "Level up your life with Life OS - a gamified habit tracker and personal operating system",
-  "start_url": "/",
+  "start_url": "%BASE_URL%",
   "display": "standalone",
   "background_color": "#09090b",
   "theme_color": "#09090b",
   "icons": [
     {
-      "src": "/app-icon.png",
+      "src": "%BASE_URL%app-icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
