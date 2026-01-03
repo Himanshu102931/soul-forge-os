@@ -24,6 +24,7 @@ const Chronicles = lazy(() => import("./pages/Chronicles"));
 const Settings = lazy(() => import("./pages/Settings"));
 const Auth = lazy(() => import("./pages/Auth"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Debug = lazy(() => import("./pages/Debug"));
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -142,6 +143,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <AppLayout><Settings /></AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/debug"
+          element={
+            <ProtectedRoute>
+              <AppLayout><Debug /></AppLayout>
             </ProtectedRoute>
           }
         />
