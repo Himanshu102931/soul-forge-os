@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
 import { useSeedPlan, useProfile, useUpdateProfile } from '@/hooks/useProfile';
@@ -57,10 +57,15 @@ export default function Settings() {
   const [exportFormat, setExportFormat] = useState<'json' | 'csv'>('json');
   
   // AI Configuration state
-  const [aiConfig, setAIConfig] = useState<AIConfig>(() => loadAIConfig());
+  const [aiConfig, setAIConfig] = useState<AIConfig>({ provider: 'local', enabled: false });
   const [aiApiKey, setAiApiKey] = useState('');
   const [showApiKey, setShowApiKey] = useState(false);
   const [testingConnection, setTestingConnection] = useState(false);
+  
+  // Load AI config on mount
+  useEffect(() => {
+    loadAIConfig().then(setAIConfig);
+  }, []);
   
   // Controlled accordion state - starts with none open
   const [openSections, setOpenSections] = useState<string[]>([]);
@@ -153,18 +158,26 @@ export default function Settings() {
     }
   };
   // AI Configuration handlers
-  const handleSaveAIConfig = () => {
-    const newConfig: AIConfig = {
-      provider: aiConfig.provider,
-      apiKey: aiApiKey || aiConfig.apiKey,
-      enabled: aiConfig.enabled,
-    };
-    saveAIConfig(newConfig);
-    setAIConfig(newConfig);
-    toast({ 
-      title: '✨ AI Configuration Saved', 
-      description: `${aiConfig.provider} is now ${aiConfig.enabled ? 'enabled' : 'disabled'}` 
-    });
+  const handleSaveAIConfig = async () => {
+    try {
+      const newConfig: AIConfig = {
+        provider: aiConfig.provider,
+        apiKey: aiApiKey || aiConfig.apiKey,
+        enabled: aiConfig.enabled,
+      };
+      await saveAIConfig(newConfig);
+      setAIConfig(newConfig);
+      toast({ 
+        title: '✨ AI Configuration Saved', 
+        description: `${aiConfig.provider} is now ${aiConfig.enabled ? 'enabled' : 'disabled'}` 
+      });
+    } catch (error) {
+      toast({
+        title: 'Failed to save',
+        description: 'Could not save AI configuration',
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleTestConnection = async () => {

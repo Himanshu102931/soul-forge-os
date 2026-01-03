@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Dialog,
@@ -59,8 +59,13 @@ export function NightlyReviewModal({ open, onOpenChange }: NightlyReviewModalPro
   const { toast } = useToast();
   
   // Rate limiting for AI features
-  const aiConfig = loadAIConfig();
+  const [aiConfig, setAIConfig] = useState<{ provider: string; enabled: boolean }>({ provider: 'gemini', enabled: false });
   const rateLimiter = useRateLimit(aiConfig.provider || 'gemini', 5);
+
+  // Load AI config on mount
+  useEffect(() => {
+    loadAIConfig().then(config => setAIConfig({ provider: config.provider, enabled: config.enabled }));
+  }, []);
 
   // Calculate unchecked bad habits
   const uncheckedBadHabits = badHabits.filter(h => h.todayLog?.status !== 'completed');
