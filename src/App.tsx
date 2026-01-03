@@ -47,8 +47,11 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   
   return (
     <div className="min-h-screen bg-background">
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
       <Sidebar />
-      <main className="md:ml-64 p-3 sm:p-4 md:p-8 pb-24 md:pb-8">
+      <main id="main-content" className="md:ml-64 p-3 sm:p-4 md:p-8 pb-24 md:pb-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
