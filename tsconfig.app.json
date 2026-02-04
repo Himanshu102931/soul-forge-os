@@ -15,11 +15,19 @@
     "jsx": "react-jsx",
 
     /* Linting */
+<<<<<<< HEAD
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
+=======
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": false,
+>>>>>>> cf46c6e (Initial commit: project files)
 
     "baseUrl": ".",
     "paths": {

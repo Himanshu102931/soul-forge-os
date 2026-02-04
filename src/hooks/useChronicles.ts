@@ -3,6 +3,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { format, subDays, startOfDay } from 'date-fns';
 import { HabitStatus, getNextHabitStatus } from '@/lib/rpg-utils';
+<<<<<<< HEAD
+=======
+import { queryKeys, STALE_TIMES } from '@/lib/query-config';
+>>>>>>> cf46c6e (Initial commit: project files)
 
 export interface DaySummary {
   id: string;
@@ -35,7 +39,12 @@ export function useAllDailySummaries() {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['all-daily-summaries', user?.id],
+=======
+    queryKey: user ? queryKeys.allDailySummaries(user.id) : ['all-daily-summaries'],
+    staleTime: STALE_TIMES.chronicles,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -57,7 +66,12 @@ export function useDaySummary(date: string) {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['day-summary', user?.id, date],
+=======
+    queryKey: user ? queryKeys.daySummary(user.id, date) : ['day-summary'],
+    staleTime: STALE_TIMES.chronicles,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -80,7 +94,12 @@ export function useDayHabitLogs(date: string) {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['day-habit-logs', user?.id, date],
+=======
+    queryKey: user ? queryKeys.dayHabitLogs(user.id, date) : ['day-habit-logs'],
+    staleTime: STALE_TIMES.chronicles,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -114,7 +133,12 @@ export function useDayMetrics(date: string) {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['day-metrics', user?.id, date],
+=======
+    queryKey: user ? queryKeys.dayMetrics(user.id, date) : ['day-metrics'],
+    staleTime: STALE_TIMES.chronicles,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -142,7 +166,12 @@ export function useDayCompletedTasks(date: string) {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['day-completed-tasks', user?.id, date],
+=======
+    queryKey: user ? queryKeys.dayCompletedTasks(user.id, date) : ['day-completed-tasks'],
+    staleTime: STALE_TIMES.chronicles,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -192,13 +221,20 @@ export function useUpdateDayNotes() {
       return data;
     },
     onSuccess: (_, { date }) => {
+<<<<<<< HEAD
       queryClient.invalidateQueries({ queryKey: ['day-summary', user?.id, date] });
+=======
+      if (user) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.daySummary(user.id, date) });
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['all-daily-summaries'] });
       queryClient.invalidateQueries({ queryKey: ['daily-summaries'] });
     },
   });
 }
 
+<<<<<<< HEAD
 // Update day mood
 export function useUpdateDayMood() {
   const queryClient = useQueryClient();
@@ -232,6 +268,9 @@ export function useUpdateDayMood() {
 }
 
 // Toggle habit log for past date (retroactive editing) - FULL CYCLE with optimistic updates
+=======
+// Toggle habit log for past date (retroactive editing) - FULL CYCLE
+>>>>>>> cf46c6e (Initial commit: project files)
 export function useToggleHistoricalHabit() {
   const queryClient = useQueryClient();
   const { user } = useAuth();
@@ -242,19 +281,26 @@ export function useToggleHistoricalHabit() {
       date, 
       currentStatus,
       isBadHabit = false,
+<<<<<<< HEAD
       xpReward = 10,
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
     }: { 
       habitId: string; 
       date: string; 
       currentStatus: HabitStatus;
       isBadHabit?: boolean;
+<<<<<<< HEAD
       xpReward?: number;
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
     }) => {
       if (!user) throw new Error('Not authenticated');
       
       // Get next status using the RPG utility
       const nextStatus = getNextHabitStatus(currentStatus, isBadHabit);
       
+<<<<<<< HEAD
       // Calculate XP delta based on actual xpReward and transition
       let xpDelta = 0;
       if (!isBadHabit) {
@@ -269,6 +315,20 @@ export function useToggleHistoricalHabit() {
         // Bad habit XP transitions
         if (currentStatus === null && nextStatus === 'completed') xpDelta = xpReward;
         else if (currentStatus === 'completed' && nextStatus === null) xpDelta = -xpReward;
+=======
+      // Calculate XP delta based on transition
+      let xpDelta = 0;
+      if (!isBadHabit) {
+        // Regular habit XP transitions
+        if (currentStatus === null && nextStatus === 'completed') xpDelta = 10;
+        else if (currentStatus === 'completed' && nextStatus === 'partial') xpDelta = -5; // 10 -> 5
+        else if (currentStatus === 'partial' && nextStatus === 'skipped') xpDelta = -5; // 5 -> 0
+        else if (currentStatus === 'skipped' && nextStatus === null) xpDelta = 0;
+      } else {
+        // Bad habit XP transitions
+        if (currentStatus === null && nextStatus === 'completed') xpDelta = 10;
+        else if (currentStatus === 'completed' && nextStatus === null) xpDelta = -10;
+>>>>>>> cf46c6e (Initial commit: project files)
       }
       
       if (nextStatus === null) {
@@ -295,6 +355,7 @@ export function useToggleHistoricalHabit() {
         if (error) throw error;
       }
       
+<<<<<<< HEAD
       return { habitId, date, newStatus: nextStatus, xpDelta };
     },
     onMutate: async ({ habitId, date, currentStatus, isBadHabit, xpReward = 10 }) => {
@@ -362,6 +423,36 @@ export function useToggleHistoricalHabit() {
       queryClient.invalidateQueries({ queryKey: ['habit-mastery'] });
       queryClient.invalidateQueries({ queryKey: ['all-daily-summaries'] });
       queryClient.invalidateQueries({ queryKey: ['profile'] });
+=======
+      return { newStatus: nextStatus, xpDelta };
+    },
+    onSuccess: async (result, { date }) => {
+      // Update profile XP
+      if (user && result.xpDelta !== 0) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('xp')
+          .eq('id', user.id)
+          .single();
+        
+        if (profile) {
+          const newXP = Math.max(0, profile.xp + result.xpDelta);
+          await supabase
+            .from('profiles')
+            .update({ xp: newXP })
+            .eq('id', user.id);
+        }
+      }
+      
+      if (user) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.dayHabitLogs(user.id, date) });
+        queryClient.invalidateQueries({ queryKey: queryKeys.profile(user.id) });
+      }
+      // Invalidate XP Velocity and Habit Mastery so graphs update instantly
+      queryClient.invalidateQueries({ queryKey: ['xp-velocity'] });
+      queryClient.invalidateQueries({ queryKey: ['habit-mastery'] });
+      queryClient.invalidateQueries({ queryKey: ['all-daily-summaries'] });
+>>>>>>> cf46c6e (Initial commit: project files)
     },
   });
 }
@@ -391,7 +482,13 @@ export function useUpdateAIResponse() {
       return data;
     },
     onSuccess: (_, { date }) => {
+<<<<<<< HEAD
       queryClient.invalidateQueries({ queryKey: ['day-summary', user?.id, date] });
+=======
+      if (user) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.daySummary(user.id, date) });
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['all-daily-summaries'] });
     },
   });
@@ -402,7 +499,12 @@ export function useXPVelocity() {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['xp-velocity', user?.id],
+=======
+    queryKey: user ? queryKeys.xpVelocity(user.id) : ['xp-velocity'],
+    staleTime: STALE_TIMES.analytics,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -427,7 +529,12 @@ export function useVitalsHistory() {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['vitals-history', user?.id],
+=======
+    queryKey: user ? queryKeys.vitalsHistory(user.id) : ['vitals-history'],
+    staleTime: STALE_TIMES.analytics,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -464,7 +571,12 @@ export function useHabitMastery() {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['habit-mastery', user?.id],
+=======
+    queryKey: user ? queryKeys.habitMastery(user.id) : ['habit-mastery'],
+    staleTime: STALE_TIMES.analytics,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -557,7 +669,13 @@ export function useUpdateMetric() {
       return data;
     },
     onSuccess: (_, { date }) => {
+<<<<<<< HEAD
       queryClient.invalidateQueries({ queryKey: ['day-metrics', user?.id, date] });
+=======
+      if (user) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.dayMetrics(user.id, date) });
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['vitals-history'] });
     },
   });

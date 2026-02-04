@@ -2,13 +2,21 @@
   "name": "Life OS",
   "short_name": "Life OS",
   "description": "Level up your life with Life OS - a gamified habit tracker and personal operating system",
+<<<<<<< HEAD
   "start_url": "%BASE_URL%",
+=======
+  "start_url": "/",
+>>>>>>> cf46c6e (Initial commit: project files)
   "display": "standalone",
   "background_color": "#09090b",
   "theme_color": "#09090b",
   "icons": [
     {
+<<<<<<< HEAD
       "src": "%BASE_URL%app-icon.png",
+=======
+      "src": "/app-icon.png",
+>>>>>>> cf46c6e (Initial commit: project files)
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

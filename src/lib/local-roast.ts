@@ -8,9 +8,12 @@ export interface DailyStats {
   steps: number;
   completedTasks?: number;
   skippedHabits?: number;
+<<<<<<< HEAD
   partialHabits?: number;
   resistanceCompleted?: number;
   resistanceTotal?: number;
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
 }
 
 // SLEEP DEPRIVED ROASTS (20+)
@@ -210,6 +213,7 @@ function getRandomItem<T>(array: T[]): T {
 }
 
 export function generateLocalRoast(stats: DailyStats): string {
+<<<<<<< HEAD
   const { 
     sleepHours, 
     missedHabits, 
@@ -238,6 +242,16 @@ export function generateLocalRoast(stats: DailyStats): string {
   const isDisciplineFailure = effectiveRate < 0.5 || (resistanceTotal > 0 && resistanceRate < 0.5);
   const isLowActivity = steps < 3000 && steps > 0;
   const isMixedBag = effectiveRate >= 0.5 && effectiveRate < 0.75;
+=======
+  const { sleepHours, missedHabits, completedHabits, totalHabits, steps, skippedHabits = 0 } = stats;
+  
+  const habitCompletionRate = totalHabits > 0 ? completedHabits / totalHabits : 0;
+  const isPerfectDay = habitCompletionRate >= 0.9 && sleepHours >= 7;
+  const isSleepDeprived = sleepHours < 5 && sleepHours > 0;
+  const isDisciplineFailure = missedHabits > 3;
+  const isLowActivity = steps < 3000 && steps > 0;
+  const isMixedBag = habitCompletionRate >= 0.4 && habitCompletionRate < 0.7;
+>>>>>>> cf46c6e (Initial commit: project files)
   
   // Priority order: Victory > Sleep Deprived > Discipline Failure > Low Activity > Mixed > Average
   if (isPerfectDay) {

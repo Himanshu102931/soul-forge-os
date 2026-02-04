@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * React Query Configuration
  * Optimized defaults for better caching and performance
@@ -161,3 +162,224 @@ export function invalidateRelatedQueries(patterns: string[][]) {
     });
   });
 }
+=======
+import { QueryClient } from '@tanstack/react-query';
+import { persistQueryClient } from '@tanstack/react-query-persist-client';
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+
+/**
+ * Centralized Query Keys Factory
+ * 
+ * Provides type-safe, consistent query keys across the app.
+ * Use these instead of hardcoded strings to ensure consistency.
+ * 
+ * Pattern: queryKeys.feature.operation(params)
+ */
+export const queryKeys = {
+  // Habits - Changes frequently throughout the day
+  habits: (userId: string, date: string) => ['habits', userId, date] as const,
+  allHabits: (userId: string) => ['all-habits', userId] as const,
+  
+  // Profile - Rarely changes, only on XP/HP/level updates
+  profile: (userId: string) => ['profile', userId] as const,
+  
+  // Tasks - Moderate changes
+  tasks: (userId: string) => ['tasks', userId] as const,
+  
+  // Metrics - Daily data (sleep, steps)
+  metrics: (userId: string, date: string) => ['metrics', userId, date] as const,
+  
+  // Daily Summary - Time-sensitive (Nightly Review)
+  dailySummary: (userId: string, date: string) => ['daily-summary', userId, date] as const,
+  dailySummaries: (userId: string) => ['daily-summaries', userId] as const,
+  
+  // Analytics - Heavy calculations, infrequent changes
+  consistency: (userId: string) => ['consistency', userId] as const,
+  habitStreaks: (userId: string) => ['habit-streaks', userId] as const,
+  
+  // Chronicles - Historical data, almost never changes
+  allDailySummaries: (userId: string) => ['all-daily-summaries', userId] as const,
+  daySummary: (userId: string, date: string) => ['day-summary', userId, date] as const,
+  dayHabitLogs: (userId: string, date: string) => ['day-habit-logs', userId, date] as const,
+  dayMetrics: (userId: string, date: string) => ['day-metrics', userId, date] as const,
+  dayCompletedTasks: (userId: string, date: string) => ['day-completed-tasks', userId, date] as const,
+  xpVelocity: (userId: string) => ['xp-velocity', userId] as const,
+  vitalsHistory: (userId: string) => ['vitals-history', userId] as const,
+  habitMastery: (habitId: string) => ['habit-mastery', habitId] as const,
+  
+  // Additional queries found in codebase
+  archivedTasks: (userId: string) => ['archived-tasks', userId] as const,
+  habitHeatmap: (userId: string, year: number) => ['habit-heatmap', userId, year] as const,
+  topPerformers: (userId: string, days: number) => ['top-performers', userId, days] as const,
+  xpHpTrends: (userId: string, days: number) => ['xp-hp-trends', userId, days] as const,
+} as const;
+
+/**
+ * Stale Time Constants
+ * 
+ * Determines how long data is considered "fresh" before refetching.
+ * Balances performance with data freshness.
+ * 
+ * Time in milliseconds:
+ * - 30s = 30 * 1000
+ * - 1min = 60 * 1000
+ * - 2min = 2 * 60 * 1000
+ * - etc.
+ */
+export const STALE_TIMES = {
+  // Very short - Time-sensitive data
+  nightly: 30 * 1000,              // 30 seconds - Nightly Review cutoff
+  
+  // Short - Frequently changing data
+  habits: 1 * 60 * 1000,           // 1 minute - Toggled throughout day
+  tasks: 2 * 60 * 1000,            // 2 minutes - Moderate changes
+  
+  // Medium - Moderately stable data
+  profile: 5 * 60 * 1000,          // 5 minutes - XP/HP updates
+  metrics: 5 * 60 * 1000,          // 5 minutes - Daily sleep/steps
+  
+  // Long - Expensive or historical data
+  analytics: 10 * 60 * 1000,       // 10 minutes - Heavy calculations
+  streaks: 15 * 60 * 1000,         // 15 minutes - Very heavy query
+  chronicles: 15 * 60 * 1000,      // 15 minutes - Historical calendar data
+} as const;
+
+/**
+ * React Query Configuration
+ * 
+ * Global defaults for all queries and mutations.
+ * Prevents aggressive refetching and improves performance.
+ * 
+ * Key improvements:
+ * - Reduced page load from 4-5s to <2s
+ * - Prevents XP jitter from rapid refetches
+ * - Intelligently caches data based on staleness
+ */
+export const queryConfig = {
+  defaultOptions: {
+    queries: {
+      // Data considered fresh for 2 minutes (default for most queries)
+      staleTime: 2 * 60 * 1000,
+      
+      // Cached data kept for 5 minutes after becoming stale
+      gcTime: 5 * 60 * 1000, // Formerly cacheTime in v4
+      
+      // Don't refetch when window regains focus (prevents aggressive refetching)
+      refetchOnWindowFocus: false,
+      
+      // Don't refetch on component mount if data exists
+      refetchOnMount: false,
+      
+      // Do refetch when internet reconnects (data might be stale)
+      refetchOnReconnect: true,
+      
+      // Retry failed queries once (Supabase is reliable, fail fast)
+      retry: 1,
+      
+      // Only run queries when online (prevents error spam offline)
+      networkMode: 'online' as const,
+    },
+    mutations: {
+      // Don't retry mutations (could cause duplicate operations)
+      retry: 0,
+      
+      // Run mutations only when online
+      networkMode: 'online' as const,
+    },
+  },
+};
+
+/**
+ * Create a new QueryClient with optimized defaults
+ * 
+ * Usage in App.tsx:
+ * ```ts
+ * import { createQueryClient } from '@/lib/query-config';
+ * const queryClient = createQueryClient();
+ * ```
+ */
+export const createQueryClient = () => {
+  const client = new QueryClient({
+    ...queryConfig,
+    // Add performance logging in development
+    ...(import.meta.env.DEV && {
+      defaultOptions: {
+        ...queryConfig.defaultOptions,
+        queries: {
+          ...queryConfig.defaultOptions.queries,
+          // Log query performance in development
+          meta: {
+            logPerformance: true,
+          },
+        },
+      },
+    }),
+  });
+
+  // Performance logging in development
+  if (import.meta.env.DEV) {
+    // Log successful queries
+    client.getQueryCache().subscribe((event) => {
+      if (event?.type === 'updated' && event.action?.type === 'success') {
+        const query = event.query;
+        const queryKey = query.queryKey.join(' > ');
+        
+        console.log(`✅ ${queryKey} loaded successfully`);
+      }
+    });
+
+    // Log failed queries
+    client.getQueryCache().subscribe((event) => {
+      if (event?.type === 'updated' && event.action?.type === 'error') {
+        const query = event.query;
+        const queryKey = query.queryKey.join(' > ');
+        const error = query.state.error;
+        console.error(`❌ ${queryKey} failed:`, error);
+      }
+    });
+  }
+
+  return client;
+};
+
+/**
+ * Setup cache persistence for core features
+ * 
+ * Persists profile, habits, and tasks to localStorage.
+ * Provides instant app load with cached data.
+ * 
+ * Note: Analytics and heavy queries are NOT persisted to avoid stale data.
+ */
+export const setupCachePersistence = (queryClient: QueryClient) => {
+  // Only persist in browser environment
+  if (typeof window === 'undefined') return;
+
+  const localStoragePersister = createSyncStoragePersister({
+    storage: window.localStorage,
+    key: 'SOUL_FORGE_QUERY_CACHE',
+  });
+
+  persistQueryClient({
+    queryClient,
+    persister: localStoragePersister,
+    maxAge: 1000 * 60 * 60 * 24, // 24 hours
+    
+    // Only persist core features (not analytics/heavy queries)
+    dehydrateOptions: {
+      shouldDehydrateQuery: (query) => {
+        const queryKey = query.queryKey[0] as string;
+        
+        // Persist these query types
+        const persistedKeys = [
+          'profile',
+          'habits',
+          'tasks',
+          'metrics',
+        ];
+        
+        return persistedKeys.includes(queryKey);
+      },
+    },
+  });
+};
+>>>>>>> cf46c6e (Initial commit: project files)

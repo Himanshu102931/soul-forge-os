@@ -2,7 +2,10 @@ import { motion } from 'framer-motion';
 import { useHorizonTasks, useCompleteTask, Task } from '@/hooks/useTasks';
 import { useAddXP } from '@/hooks/useProfile';
 import { isOverdue, isDueToday, formatDateShort } from '@/lib/time-utils';
+<<<<<<< HEAD
 import { LoadingList } from '@/components/ui/loading-skeleton';
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
 import { Sunrise, CheckCircle2, Target, Inbox } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -38,10 +41,22 @@ export function HorizonWidget() {
     });
   };
 
+<<<<<<< HEAD
   if (isLoading) {
     return (
       <div className="bg-card border border-border rounded-xl p-4">
         <LoadingList count={2} showCheckbox={false} />
+=======
+  const lastUpdated = tasks && tasks.length > 0 && tasks[0].updated_at ? new Date(tasks[0].updated_at) : null;
+  if (isLoading) {
+    return (
+      <div className="bg-card border border-border rounded-xl p-4 animate-pulse">
+        <div className="h-6 w-32 bg-muted rounded mb-3" />
+        <div className="space-y-2">
+          <div className="h-12 bg-muted rounded" />
+          <div className="h-12 bg-muted rounded" />
+        </div>
+>>>>>>> cf46c6e (Initial commit: project files)
       </div>
     );
   }
@@ -50,12 +65,21 @@ export function HorizonWidget() {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
+<<<<<<< HEAD
       className="bg-card border border-border rounded-xl p-3 sm:p-4"
     >
       <div className="flex items-center gap-2 mb-2 sm:mb-3">
         <Sunrise className="w-4 h-4 text-warning" />
         <h3 className="font-semibold text-xs sm:text-sm">Horizon</h3>
         <span className="text-[10px] sm:text-xs text-muted-foreground ml-auto">Next 3 days</span>
+=======
+      className="bg-card border border-border rounded-xl p-4"
+    >
+      <div className="flex items-center gap-2 mb-3" aria-label="Horizon Widget Header">
+        <Sunrise className="w-4 h-4 text-warning" />
+        <h3 className="font-semibold text-sm">Horizon</h3>
+        <span className="text-xs text-muted-foreground ml-auto">Next 3 days</span>
+>>>>>>> cf46c6e (Initial commit: project files)
       </div>
 
       {tasks.length === 0 ? (
@@ -104,7 +128,11 @@ export function HorizonWidget() {
                     ) : (
                       <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                         <Inbox className="w-3 h-3" />
+<<<<<<< HEAD
                         Task Vault
+=======
+                        Backlog
+>>>>>>> cf46c6e (Initial commit: project files)
                       </span>
                     )}
                   </div>
@@ -121,6 +149,14 @@ export function HorizonWidget() {
           })}
         </div>
       )}
+<<<<<<< HEAD
+=======
+      {lastUpdated && (
+        <div className="text-right text-xs text-muted-foreground mt-1">
+          Last updated: {lastUpdated.toLocaleString()}
+        </div>
+      )}
+>>>>>>> cf46c6e (Initial commit: project files)
     </motion.div>
   );
 }

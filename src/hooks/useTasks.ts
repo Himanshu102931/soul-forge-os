@@ -4,7 +4,11 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useLogicalDate } from '@/contexts/LogicalDateContext';
 import { addDays, format } from 'date-fns';
 import { getLogicalDate, getLogicalDateString } from '@/lib/time-utils';
+<<<<<<< HEAD
 import { queryKeys, staleTimes } from '@/lib/query-config';
+=======
+import { queryKeys, STALE_TIMES } from '@/lib/query-config';
+>>>>>>> cf46c6e (Initial commit: project files)
 
 export interface Task {
   id: string;
@@ -27,30 +31,64 @@ export function useTasks() {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: queryKeys.tasks(user?.id || ''),
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
+=======
+    queryKey: user ? queryKeys.tasks(user.id) : ['tasks'],
+    staleTime: STALE_TIMES.tasks,
+    queryFn: async () => {
+      if (!user) throw new Error('Not authenticated');
+      const todayStr = getLogicalDateString();
+>>>>>>> cf46c6e (Initial commit: project files)
       const { data, error } = await supabase
         .from('tasks')
         .select('*')
         .eq('user_id', user.id)
         .eq('archived', false)
         .order('created_at', { ascending: true });
+<<<<<<< HEAD
       
       if (error) throw error;
       
       // Sort by priority then by created_at
       const sorted = (data as Task[]).sort((a, b) => {
+=======
+      if (error) throw error;
+      let tasks = (data as Task[]);
+      // Auto-move tasks to Today if due_date is today and is_for_today is false
+      const tasksToMove = tasks.filter(t => t.due_date === todayStr && !t.is_for_today && !t.completed && !t.archived);
+      if (tasksToMove.length > 0) {
+        await Promise.all(tasksToMove.map(t =>
+          supabase.from('tasks').update({ is_for_today: true }).eq('id', t.id)
+        ));
+        // Update local list
+        tasks = tasks.map(t =>
+          tasksToMove.find(tm => tm.id === t.id)
+            ? { ...t, is_for_today: true }
+            : t
+        );
+      }
+      // Sort by priority then by created_at
+      const sorted = tasks.sort((a, b) => {
+>>>>>>> cf46c6e (Initial commit: project files)
         const priorityDiff = priorityOrder[a.priority] - priorityOrder[b.priority];
         if (priorityDiff !== 0) return priorityDiff;
         return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
       });
+<<<<<<< HEAD
       
       return sorted;
     },
     enabled: !!user,
     staleTime: staleTimes.realtime, // 30s - tasks change frequently
+=======
+      return sorted;
+    },
+    enabled: !!user,
+>>>>>>> cf46c6e (Initial commit: project files)
   });
 }
 
@@ -126,6 +164,10 @@ export function useCreateTask() {
       return data;
     },
     onSuccess: () => {
+<<<<<<< HEAD
+=======
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },
   });
@@ -148,25 +190,49 @@ export function useUpdateTask() {
       return data;
     },
     onMutate: async ({ id, ...updates }) => {
+<<<<<<< HEAD
       await queryClient.cancelQueries({ queryKey: ['tasks'] });
       
       const previousTasks = queryClient.getQueryData(['tasks', user?.id]);
       
       queryClient.setQueryData(['tasks', user?.id], (old: Task[] | undefined) => {
+=======
+      if (user) {
+        await queryClient.cancelQueries({ queryKey: queryKeys.tasks(user.id) });
+      }
+      
+      const previousTasks = user ? queryClient.getQueryData(queryKeys.tasks(user.id)) : undefined;
+      
+      if (previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), (old: Task[] | undefined) => {
+>>>>>>> cf46c6e (Initial commit: project files)
         if (!old) return old;
         return old.map(task => 
           task.id === id ? { ...task, ...updates } : task
         );
       });
+<<<<<<< HEAD
+=======
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       
       return { previousTasks };
     },
     onError: (err, variables, context) => {
+<<<<<<< HEAD
       if (context?.previousTasks) {
         queryClient.setQueryData(['tasks', user?.id], context.previousTasks);
       }
     },
     onSettled: () => {
+=======
+      if (context?.previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), context.previousTasks);
+      }
+    },
+    onSettled: () => {
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },
   });
@@ -191,11 +257,22 @@ export function useCompleteTask() {
       if (error) throw error;
     },
     onMutate: async ({ id, completed }) => {
+<<<<<<< HEAD
       await queryClient.cancelQueries({ queryKey: ['tasks'] });
       
       const previousTasks = queryClient.getQueryData(['tasks', user?.id]);
       
       queryClient.setQueryData(['tasks', user?.id], (old: Task[] | undefined) => {
+=======
+      if (user) {
+        await queryClient.cancelQueries({ queryKey: queryKeys.tasks(user.id) });
+      }
+      
+      const previousTasks = user ? queryClient.getQueryData(queryKeys.tasks(user.id)) : undefined;
+      
+      if (previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), (old: Task[] | undefined) => {
+>>>>>>> cf46c6e (Initial commit: project files)
         if (!old) return old;
         return old.map(task => 
           task.id === id ? { 
@@ -205,15 +282,28 @@ export function useCompleteTask() {
           } : task
         );
       });
+<<<<<<< HEAD
+=======
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       
       return { previousTasks };
     },
     onError: (err, variables, context) => {
+<<<<<<< HEAD
       if (context?.previousTasks) {
         queryClient.setQueryData(['tasks', user?.id], context.previousTasks);
       }
     },
     onSettled: () => {
+=======
+      if (context?.previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), context.previousTasks);
+      }
+    },
+    onSettled: () => {
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },
   });
@@ -233,25 +323,49 @@ export function useMoveTask() {
       if (error) throw error;
     },
     onMutate: async ({ id, is_for_today }) => {
+<<<<<<< HEAD
       await queryClient.cancelQueries({ queryKey: ['tasks'] });
       
       const previousTasks = queryClient.getQueryData(['tasks', user?.id]);
       
       queryClient.setQueryData(['tasks', user?.id], (old: Task[] | undefined) => {
+=======
+      if (user) {
+        await queryClient.cancelQueries({ queryKey: queryKeys.tasks(user.id) });
+      }
+      
+      const previousTasks = user ? queryClient.getQueryData(queryKeys.tasks(user.id)) : undefined;
+      
+      if (previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), (old: Task[] | undefined) => {
+>>>>>>> cf46c6e (Initial commit: project files)
         if (!old) return old;
         return old.map(task => 
           task.id === id ? { ...task, is_for_today } : task
         );
       });
+<<<<<<< HEAD
+=======
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       
       return { previousTasks };
     },
     onError: (err, variables, context) => {
+<<<<<<< HEAD
       if (context?.previousTasks) {
         queryClient.setQueryData(['tasks', user?.id], context.previousTasks);
       }
     },
     onSettled: () => {
+=======
+      if (context?.previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), context.previousTasks);
+      }
+    },
+    onSettled: () => {
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },
   });
@@ -271,6 +385,7 @@ export function useDeleteTask() {
       if (error) throw error;
     },
     onMutate: async (id) => {
+<<<<<<< HEAD
       await queryClient.cancelQueries({ queryKey: ['tasks'] });
       
       const previousTasks = queryClient.getQueryData<Task[]>(['tasks', user?.id]);
@@ -280,15 +395,39 @@ export function useDeleteTask() {
         if (!old) return old;
         return old.filter(task => task.id !== id);
       });
+=======
+      if (user) {
+        await queryClient.cancelQueries({ queryKey: queryKeys.tasks(user.id) });
+      }
+      
+      const previousTasks = user ? queryClient.getQueryData<Task[]>(queryKeys.tasks(user.id)) : undefined;
+      const deletedTask = previousTasks?.find(t => t.id === id);
+      
+      if (previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), (old: Task[] | undefined) => {
+        if (!old) return old;
+        return old.filter(task => task.id !== id);
+      });
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       
       return { previousTasks, deletedTask };
     },
     onError: (err, variables, context) => {
+<<<<<<< HEAD
       if (context?.previousTasks) {
         queryClient.setQueryData(['tasks', user?.id], context.previousTasks);
       }
     },
     onSettled: () => {
+=======
+      if (context?.previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), context.previousTasks);
+      }
+    },
+    onSettled: () => {
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },
   });
@@ -317,6 +456,10 @@ export function useRestoreTask() {
       return data;
     },
     onSuccess: () => {
+<<<<<<< HEAD
+=======
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
     },
   });
@@ -336,6 +479,7 @@ export function useArchiveTask() {
       if (error) throw error;
     },
     onMutate: async (id) => {
+<<<<<<< HEAD
       await queryClient.cancelQueries({ queryKey: ['tasks'] });
       
       const previousTasks = queryClient.getQueryData<Task[]>(['tasks', user?.id]);
@@ -344,15 +488,38 @@ export function useArchiveTask() {
         if (!old) return old;
         return old.filter(task => task.id !== id);
       });
+=======
+      if (user) {
+        await queryClient.cancelQueries({ queryKey: queryKeys.tasks(user.id) });
+      }
+      
+      const previousTasks = user ? queryClient.getQueryData<Task[]>(queryKeys.tasks(user.id)) : undefined;
+      
+      if (previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), (old: Task[] | undefined) => {
+        if (!old) return old;
+        return old.filter(task => task.id !== id);
+      });
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
       
       return { previousTasks };
     },
     onError: (err, variables, context) => {
+<<<<<<< HEAD
       if (context?.previousTasks) {
         queryClient.setQueryData(['tasks', user?.id], context.previousTasks);
       }
     },
     onSettled: () => {
+=======
+      if (context?.previousTasks && user) {
+        queryClient.setQueryData(queryKeys.tasks(user.id), context.previousTasks);
+      }
+    },
+    onSettled: () => {
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
       queryClient.invalidateQueries({ queryKey: ['archived-tasks'] });
     },
@@ -364,7 +531,12 @@ export function useArchivedTasks() {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: ['archived-tasks', user?.id],
+=======
+    queryKey: user ? queryKeys.archivedTasks(user.id) : ['archived-tasks'],
+    staleTime: STALE_TIMES.chronicles,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -396,11 +568,16 @@ export function useUnarchiveTask() {
       if (error) throw error;
     },
     onSuccess: () => {
+<<<<<<< HEAD
+=======
+      // Invalidate all tasks queries
+>>>>>>> cf46c6e (Initial commit: project files)
       queryClient.invalidateQueries({ queryKey: ['tasks'] });
       queryClient.invalidateQueries({ queryKey: ['archived-tasks'] });
     },
   });
 }
+<<<<<<< HEAD
 
 // ============================================================
 // PAGINATION AND OPTIMIZATION UTILITIES
@@ -519,3 +696,5 @@ export function useCompletedTasks(page: number = 0, pageSize: number = 50) {
   });
 }
 
+=======
+>>>>>>> cf46c6e (Initial commit: project files)

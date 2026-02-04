@@ -1,0 +1,5509 @@
+{
+  "version": "1.0",
+  "profile": {
+    "level": 20,
+    "xp": 464,
+    "hp": 30,
+    "max_hp": 100,
+    "day_start_hour": 4
+  },
+  "habits": [
+    {
+      "id": "habit_0",
+      "title": "Wake Up On Time",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 0,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_1",
+      "title": "30 pushups",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 1,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 5
+    },
+    {
+      "id": "habit_2",
+      "title": "Morning Skin Routine",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 2,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_3",
+      "title": "10 pull ups",
+      "description": null,
+      "frequency_days": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 3,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_4",
+      "title": "Physique: Gym Session",
+      "description": null,
+      "frequency_days": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 4,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_5",
+      "title": "Evening Skin Routine",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 5,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_6",
+      "title": "Protein",
+      "description": "At least 70 gram",
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 6,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 15
+    },
+    {
+      "id": "habit_7",
+      "title": "Hydration (3L)",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 7,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_8",
+      "title": "Clay Mask",
+      "description": null,
+      "frequency_days": [
+        0
+      ],
+      "sort_order": 7,
+      "archived": true,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_9",
+      "title": "Reading",
+      "description": "At least 10 page",
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 8,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_10",
+      "title": "Hair Wash",
+      "description": null,
+      "frequency_days": [
+        3,
+        6
+      ],
+      "sort_order": 9,
+      "archived": true,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_11",
+      "title": "Hair Oil",
+      "description": null,
+      "frequency_days": [
+        2,
+        5
+      ],
+      "sort_order": 9,
+      "archived": true,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_12",
+      "title": "De-Tan Pack",
+      "description": null,
+      "frequency_days": [
+        2,
+        5
+      ],
+      "sort_order": 10,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_13",
+      "title": "Video Editing",
+      "description": null,
+      "frequency_days": [
+        0
+      ],
+      "sort_order": 14,
+      "archived": true,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_14",
+      "title": "Mirror Photo",
+      "description": "Take photo of my body and face in good lighting.",
+      "frequency_days": [
+        0
+      ],
+      "sort_order": 15,
+      "archived": false,
+      "is_bad_habit": false,
+      "xp_reward": 10
+    },
+    {
+      "id": "habit_15",
+      "title": "No Sugar",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 16,
+      "archived": false,
+      "is_bad_habit": true,
+      "xp_reward": 15
+    },
+    {
+      "id": "habit_16",
+      "title": "No fast food",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 16,
+      "archived": false,
+      "is_bad_habit": true,
+      "xp_reward": 15
+    },
+    {
+      "id": "habit_17",
+      "title": "Instagram Doom Scrolling",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 17,
+      "archived": false,
+      "is_bad_habit": true,
+      "xp_reward": 15
+    },
+    {
+      "id": "habit_18",
+      "title": "Mindless Consumption",
+      "description": null,
+      "frequency_days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sort_order": 18,
+      "archived": false,
+      "is_bad_habit": true,
+      "xp_reward": 15
+    }
+  ],
+  "habit_logs": [
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-01",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-02",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-03",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-12",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-16",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-17",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-21",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-22",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-23",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-25",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-26",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-27",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-28",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-29",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-30",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2025-12-31",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-01",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-02",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-03",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-07",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-08",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-09",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-10",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-11",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-12",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-16",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-17",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-18",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-19",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-21",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-23",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_7",
+      "habitTitle": "Hydration (3L)",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2026-01-06",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_12",
+      "habitTitle": "De-Tan Pack",
+      "date": "2026-01-13",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-28",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_16",
+      "habitTitle": "No fast food",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-26",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-27",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-28",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_18",
+      "habitTitle": "Mindless Consumption",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_8",
+      "habitTitle": "Clay Mask",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_8",
+      "habitTitle": "Clay Mask",
+      "date": "2025-12-14",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_8",
+      "habitTitle": "Clay Mask",
+      "date": "2025-12-21",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-06",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-13",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-17",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-18",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-26",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2025-12-30",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_9",
+      "habitTitle": "Reading",
+      "date": "2026-01-07",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-26",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-27",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-28",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_17",
+      "habitTitle": "Instagram Doom Scrolling",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_15",
+      "habitTitle": "No Sugar",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-12",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-26",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_3",
+      "habitTitle": "10 pull ups",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-02",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-04",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-07",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-08",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-09",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-10",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-11",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-13",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-14",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-15",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-17",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-21",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-25",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-26",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-27",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-28",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-29",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-30",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-04",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-07",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-09",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-10",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-18",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-24",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_0",
+      "habitTitle": "Wake Up On Time",
+      "date": "2026-01-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-01",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-02",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-04",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-05",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-06",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-08",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-09",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-12",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-14",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-15",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-16",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-19",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-20",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-21",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-22",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-25",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-26",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-27",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-28",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-29",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-30",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-01",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-02",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-03",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-06",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-07",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-08",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-09",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-11",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-12",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-13",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-14",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-15",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-16",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-18",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-19",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-21",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-22",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-23",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_6",
+      "habitTitle": "Protein",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-17",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-18",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-23",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-25",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-26",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-22",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_4",
+      "habitTitle": "Physique: Gym Session",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_14",
+      "habitTitle": "Mirror Photo",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_14",
+      "habitTitle": "Mirror Photo",
+      "date": "2025-12-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_14",
+      "habitTitle": "Mirror Photo",
+      "date": "2025-12-28",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_14",
+      "habitTitle": "Mirror Photo",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_14",
+      "habitTitle": "Mirror Photo",
+      "date": "2026-01-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_10",
+      "habitTitle": "Hair Wash",
+      "date": "2025-12-03",
+      "status": "skipped"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-19",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-21",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-27",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-28",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_5",
+      "habitTitle": "Evening Skin Routine",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-26",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-27",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-28",
+      "status": "partial"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_2",
+      "habitTitle": "Morning Skin Routine",
+      "date": "2026-01-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-18",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-25",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-26",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-27",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-28",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-29",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-30",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2025-12-31",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-01",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-02",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-03",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-04",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-05",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-06",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-07",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-08",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-09",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-10",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-11",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-12",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-13",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-14",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-15",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-16",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-17",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-19",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-20",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-21",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-22",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-23",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-24",
+      "status": "completed"
+    },
+    {
+      "habit_id": "habit_1",
+      "habitTitle": "30 pushups",
+      "date": "2026-01-25",
+      "status": "completed"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "Check All Vehicles Paper",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": "2025-12-24",
+      "is_for_today": true,
+      "due_date": "2025-12-24",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": null,
+      "archived": false
+    },
+    {
+      "title": "good",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-09",
+      "archived": false
+    },
+    {
+      "title": "DAA (26 Dec)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2025-12-25",
+      "is_for_today": false,
+      "due_date": "2025-12-25",
+      "archived": false
+    },
+    {
+      "title": "why",
+      "priority": "low",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": null,
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "high",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-02",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "low",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-11-26",
+      "archived": false
+    },
+    {
+      "title": "kyu",
+      "priority": "high",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": null,
+      "archived": false
+    },
+    {
+      "title": "good",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-01",
+      "archived": false
+    },
+    {
+      "title": "good",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": true,
+      "due_date": "2025-12-08",
+      "archived": false
+    },
+    {
+      "title": "no",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-08",
+      "archived": false
+    },
+    {
+      "title": "Complete passport application",
+      "priority": "high",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": true,
+      "due_date": "2025-12-04",
+      "archived": false
+    },
+    {
+      "title": "accha",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-03",
+      "archived": false
+    },
+    {
+      "title": "good",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-04",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": null,
+      "archived": false
+    },
+    {
+      "title": "no",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-05",
+      "archived": false
+    },
+    {
+      "title": "Clean/Arrange my bookshelf",
+      "priority": "low",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-12",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-08",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-09",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-06",
+      "archived": false
+    },
+    {
+      "title": "ML (2 Jan)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2026-01-01",
+      "is_for_today": false,
+      "due_date": "2026-01-01",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-07",
+      "archived": false
+    },
+    {
+      "title": "yes",
+      "priority": "medium",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": true,
+      "due_date": "2025-12-06",
+      "archived": false
+    },
+    {
+      "title": "ttt",
+      "priority": "high",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-08",
+      "archived": false
+    },
+    {
+      "title": "Buy Rose water",
+      "priority": "high",
+      "completed": true,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2025-12-09",
+      "archived": false
+    },
+    {
+      "title": "Create a Portfolio/Resume",
+      "priority": "medium",
+      "completed": false,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": null,
+      "archived": false
+    },
+    {
+      "title": "Body Part sized",
+      "priority": "low",
+      "completed": true,
+      "completed_at": "2026-01-02",
+      "is_for_today": false,
+      "due_date": "2026-01-02",
+      "archived": false
+    },
+    {
+      "title": "Body part size",
+      "priority": "medium",
+      "completed": false,
+      "completed_at": null,
+      "is_for_today": false,
+      "due_date": "2026-02-01",
+      "archived": false
+    },
+    {
+      "title": "E & S (12 Dec)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2025-12-11",
+      "is_for_today": false,
+      "due_date": "2025-12-11",
+      "archived": false
+    },
+    {
+      "title": "DSP (6 Jan)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2026-01-05",
+      "is_for_today": false,
+      "due_date": "2026-01-05",
+      "archived": false
+    },
+    {
+      "title": "Spanish (16 Dec)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2025-12-15",
+      "is_for_today": false,
+      "due_date": "2025-12-15",
+      "archived": false
+    },
+    {
+      "title": "Flat (18 Dec)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2025-12-17",
+      "is_for_today": false,
+      "due_date": "2025-12-17",
+      "archived": false
+    },
+    {
+      "title": "Physics (19 Dec)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2025-12-18",
+      "is_for_today": false,
+      "due_date": "2025-12-18",
+      "archived": false
+    },
+    {
+      "title": "BEE (23 Dec)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2025-12-22",
+      "is_for_today": false,
+      "due_date": "2025-12-22",
+      "archived": false
+    },
+    {
+      "title": "Math's III (24 Dec)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2025-12-23",
+      "is_for_today": false,
+      "due_date": "2025-12-23",
+      "archived": false
+    },
+    {
+      "title": "NLP (8 Jan)",
+      "priority": "high",
+      "completed": true,
+      "completed_at": "2026-01-07",
+      "is_for_today": false,
+      "due_date": "2026-01-07",
+      "archived": false
+    }
+  ],
+  "daily_summaries": [
+    {
+      "date": "2025-12-01",
+      "mood_score": null,
+      "notes": null,
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-02",
+      "mood_score": null,
+      "notes": null,
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-03",
+      "mood_score": null,
+      "notes": "My day was ok. I learned some new tricks in Minecraft. I could have planned my studies for tomorrow.",
+      "xp_earned": 120,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-04",
+      "mood_score": null,
+      "notes": "It was a good day , but i ate fast food , and it was also a good wedding night i enjoyed it. I Don't know what i could have done.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-05",
+      "mood_score": null,
+      "notes": "It was a good day, I studied math's for my Re exams and have planned for my exams, I could have done this a day or two earlier but \"derr aye durust aye\".",
+      "xp_earned": 105,
+      "hp_lost": 10
+    },
+    {
+      "date": "2025-12-06",
+      "mood_score": null,
+      "notes": "It was god at the start, but at the end I got bored and was not good.",
+      "xp_earned": 105,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-07",
+      "mood_score": null,
+      "notes": "It was bad at the start, i was not emotionally stable . i took some action in anger which i don't regret right now but i might in the future. i could have read books in the start.",
+      "xp_earned": 105,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-08",
+      "mood_score": null,
+      "notes": "It was a normal day . I learned a bit about APJ Abdul Kalam and a bit about money , the psychology behind it. i should have studied more of math's or physics.",
+      "xp_earned": 120,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-09",
+      "mood_score": null,
+      "notes": "It was a Normal day . I learned nothing new , i just tried to improve me app . I might have studied a bit.",
+      "xp_earned": 120,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-10",
+      "mood_score": null,
+      "notes": "It was a Ok day. I re-read one punch man . ",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-11",
+      "mood_score": null,
+      "notes": "It was a Normal day. I didn't do much just read a lot of manhwa.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-12",
+      "mood_score": null,
+      "notes": "I leant a bit about E & S which i know i am not gonna use anywhere. ",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-13",
+      "mood_score": null,
+      "notes": "It was a bad, in term of growth as i did nothing but read manhwa . It could have improved by doing something progressive.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-14",
+      "mood_score": null,
+      "notes": "same as tomorrow no change.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-15",
+      "mood_score": null,
+      "notes": "It was a good day, I studied spanish for my exam and am in good mood.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-16",
+      "mood_score": null,
+      "notes": "It was a good day, my spanish exam was good. I should study for flat.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-17",
+      "mood_score": null,
+      "notes": "It was a normal day , i studied FLAT for exam and control my self from doing THAT thing. ",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-18",
+      "mood_score": null,
+      "notes": "it was a Okay day , my Flat exam was good , and i studied for physics exam.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-19",
+      "mood_score": null,
+      "notes": "it was a good day in term of mental peace , as i was not feeling good and was having lots of negative thought, But no a good day in terms of progress and productivity . also my physics exam was good.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-20",
+      "mood_score": null,
+      "notes": "it was a normal day , nothing special.",
+      "xp_earned": 117,
+      "hp_lost": 10
+    },
+    {
+      "date": "2025-12-21",
+      "mood_score": 4,
+      "notes": "The start was good but the end was bad, i was not able to control my anger.",
+      "xp_earned": 77,
+      "hp_lost": 10
+    },
+    {
+      "date": "2025-12-22",
+      "mood_score": null,
+      "notes": "It was a normal day nothing much happened, just my BEE exam preparation for tomorrow.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-23",
+      "mood_score": null,
+      "notes": "My BEE exam was ok , and i studied for my math-3 exam.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-24",
+      "mood_score": null,
+      "notes": "My Math-3 exam was good, my workout was good and I completed everyhabit",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-25",
+      "mood_score": null,
+      "notes": "It was a normal day, I studied for DAA.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-26",
+      "mood_score": null,
+      "notes": "I enjoyed my day , my DAA exam was good too. I watched a movie dhurandhara with my friend.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-27",
+      "mood_score": null,
+      "notes": "It was a normal day",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-28",
+      "mood_score": null,
+      "notes": "It was a bad day",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-29",
+      "mood_score": null,
+      "notes": "It was a normal day , from tomorrow i will try editing.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2025-12-30",
+      "mood_score": null,
+      "notes": "It was a Ok day. I mad progress in my app and watch two movies, Zootopia both part 1 & 2 .",
+      "xp_earned": 20,
+      "hp_lost": 70
+    },
+    {
+      "date": "2025-12-31",
+      "mood_score": null,
+      "notes": "It was a normal day, I made progress in my app. ",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-01",
+      "mood_score": 4,
+      "notes": "The start was good, but at the end while I was completing my app , some error occurred. I did studied for my ML exam.",
+      "xp_earned": 127,
+      "hp_lost": 10
+    },
+    {
+      "date": "2026-01-02",
+      "mood_score": null,
+      "notes": "My ML exam was good, and I have a good pplan for my app.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-03",
+      "mood_score": null,
+      "notes": "Nothing special, just rereading the manhua dungeon obyssey.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-04",
+      "mood_score": null,
+      "notes": "Nothin special .",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-05",
+      "mood_score": null,
+      "notes": "It was a normal day , I studies for DSP exam.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-06",
+      "mood_score": null,
+      "notes": "Good day , my DSP exam was good.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-07",
+      "mood_score": null,
+      "notes": "Normal day, studied for NLP exam .",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-08",
+      "mood_score": null,
+      "notes": "Nothing special just my exam are over and my NLP exam was good.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-09",
+      "mood_score": null,
+      "notes": "Normal day, did nothing.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-10",
+      "mood_score": null,
+      "notes": "I brought new clothes for my self , feeling good.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-11",
+      "mood_score": null,
+      "notes": "Did nothing , just read manhwa.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-12",
+      "mood_score": null,
+      "notes": "Nothing, just first day of 6th sem.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-13",
+      "mood_score": null,
+      "notes": "Nothing special.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-14",
+      "mood_score": null,
+      "notes": "Normal day, just said about the exam checking.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-15",
+      "mood_score": null,
+      "notes": "It was a good day or cheat day you can say, I tried new burgers.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-16",
+      "mood_score": null,
+      "notes": "Nothing special.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-17",
+      "mood_score": null,
+      "notes": "Fun day, did some shooting for reel.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-18",
+      "mood_score": null,
+      "notes": "It was a day where I did nothing .",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-19",
+      "mood_score": null,
+      "notes": "Nothing special.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-20",
+      "mood_score": null,
+      "notes": "Read manhua and had a meet with Idhika .",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-21",
+      "mood_score": null,
+      "notes": "Played game with mama.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-22",
+      "mood_score": null,
+      "notes": "Good day , played games and planned for my goals.",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-23",
+      "mood_score": null,
+      "notes": "It was a normal day, again did some planning for future .",
+      "xp_earned": 0,
+      "hp_lost": 0
+    },
+    {
+      "date": "2026-01-24",
+      "mood_score": 4,
+      "notes": "did nothing , and was stressful about the 25th event .",
+      "xp_earned": 135,
+      "hp_lost": 10
+    }
+  ],
+  "metric_logs": [
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-01",
+      "value": 7.0
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-01",
+      "value": 8281.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-02",
+      "value": 8.44
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-02",
+      "value": 3791.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-03",
+      "value": 7.5
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-03",
+      "value": 5797.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-04",
+      "value": 8.27
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-04",
+      "value": 7000.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-05",
+      "value": 6.98
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-05",
+      "value": 4796.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-06",
+      "value": 8.8
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-06",
+      "value": 4827.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-07",
+      "value": 9.15
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-07",
+      "value": 1091.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-08",
+      "value": 8.83
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-08",
+      "value": 5900.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-09",
+      "value": 9.27
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-09",
+      "value": 3629.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-10",
+      "value": 8.2
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-10",
+      "value": 7213.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-11",
+      "value": 6.83
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-11",
+      "value": 3749.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-12",
+      "value": 7.47
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-12",
+      "value": 7000.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-13",
+      "value": 8.33
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-13",
+      "value": 11319.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-14",
+      "value": 8.48
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-14",
+      "value": 2328.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-15",
+      "value": 7.38
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-15",
+      "value": 7992.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-16",
+      "value": 6.75
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-16",
+      "value": 15597.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-17",
+      "value": 9.43
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-17",
+      "value": 960.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-18",
+      "value": 6.83
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-18",
+      "value": 3073.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-19",
+      "value": 6.17
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-19",
+      "value": 7000.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-20",
+      "value": 9.28
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-20",
+      "value": 5540.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-21",
+      "value": 9.6
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-21",
+      "value": 3424.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-22",
+      "value": 7.27
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-22",
+      "value": 7587.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-23",
+      "value": 6.17
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-23",
+      "value": 10072.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-24",
+      "value": 6.02
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-24",
+      "value": 21921.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-25",
+      "value": 8.58
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-25",
+      "value": 12540.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-26",
+      "value": 5.13
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-26",
+      "value": 19898.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-27",
+      "value": 5.5
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-27",
+      "value": 20154.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-28",
+      "value": 6.67
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-28",
+      "value": 12443.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-29",
+      "value": 6.07
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-29",
+      "value": 4623.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-30",
+      "value": 9.22
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-30",
+      "value": 7958.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2025-12-31",
+      "value": 8.35
+    },
+    {
+      "metric_id": "steps",
+      "date": "2025-12-31",
+      "value": 5340.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-01",
+      "value": 6.82
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-01",
+      "value": 12364.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-02",
+      "value": 5.83
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-02",
+      "value": 15377.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-03",
+      "value": 8.53
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-03",
+      "value": 10836.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-04",
+      "value": 10.0
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-04",
+      "value": 2744.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-05",
+      "value": 7.0
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-05",
+      "value": 9214.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-06",
+      "value": 6.75
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-06",
+      "value": 16530.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-07",
+      "value": 9.0
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-07",
+      "value": 4058.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-08",
+      "value": 7.58
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-08",
+      "value": 7325.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-09",
+      "value": 5.0
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-09",
+      "value": 10000.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-10",
+      "value": 10.0
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-10",
+      "value": 21935.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-11",
+      "value": 8.37
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-11",
+      "value": 3423.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-12",
+      "value": 6.85
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-12",
+      "value": 12051.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-13",
+      "value": 7.17
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-13",
+      "value": 6217.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-14",
+      "value": 8.0
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-14",
+      "value": 6739.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-15",
+      "value": 6.92
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-15",
+      "value": 8901.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-16",
+      "value": 6.59
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-16",
+      "value": 17369.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-17",
+      "value": 8.27
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-17",
+      "value": 5986.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-18",
+      "value": 8.83
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-18",
+      "value": 1316.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-19",
+      "value": 6.78
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-19",
+      "value": 9000.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-20",
+      "value": 6.23
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-20",
+      "value": 9000.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-21",
+      "value": 6.27
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-21",
+      "value": 8390.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-22",
+      "value": 7.5
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-22",
+      "value": 5628.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-23",
+      "value": 6.88
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-23",
+      "value": 5027.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-24",
+      "value": 9.82
+    },
+    {
+      "metric_id": "steps",
+      "date": "2026-01-24",
+      "value": 3803.0
+    },
+    {
+      "metric_id": "sleep",
+      "date": "2026-01-25",
+      "value": 6.0
+    }
+  ]
+}

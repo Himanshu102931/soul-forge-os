@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
@@ -15,6 +16,27 @@ import { BrainDataSection } from '@/components/settings/BrainDataSection';
 import { AIConfigSection } from '@/components/settings/AIConfigSection';
 import { AIUsageTab } from '@/components/settings/AIUsageTab';
 import { DangerZoneSection } from '@/components/settings/DangerZoneSection';
+=======
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useAuth } from '@/contexts/AuthContext';
+import { useSeedPlan, useProfile, useUpdateProfile } from '@/hooks/useProfile';
+import { SettingsXPSchema } from '@/lib/validation';
+import { useAllHabits, useArchiveHabit, useCreateHabit, useUpdateHabit, useDeleteHabit, Habit } from '@/hooks/useHabits';
+import { useArchivedTasks, useUnarchiveTask } from '@/hooks/useTasks';
+import { ImportDataSection } from '@/components/settings/ImportDataSection';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
+import { 
+  LogOut, Sparkles, Archive, RotateCcw, Loader2, 
+  Plus, Pencil, Trash2, Minus, AlertTriangle, Brain, 
+  CheckCircle, Settings as SettingsIcon, Pause, Play
+} from 'lucide-react';
+import { HabitFormDialog } from '@/components/HabitFormDialog';
+import { HabitTemplateDialog } from '@/components/HabitTemplateDialog';
+>>>>>>> cf46c6e (Initial commit: project files)
 import {
   AlertDialog,
   AlertDialogAction,
@@ -32,6 +54,17 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
+<<<<<<< HEAD
+=======
+const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+function formatFrequency(days: number[]): string {
+  if (days.length === 0) return 'Always';
+  if (days.length === 7) return 'Daily';
+  return days.map(d => DAY_NAMES[d]).join(', ');
+}
+
+>>>>>>> cf46c6e (Initial commit: project files)
 export default function Settings() {
   const { signOut, user } = useAuth();
   const seedPlan = useSeedPlan();
@@ -44,6 +77,7 @@ export default function Settings() {
   const createHabit = useCreateHabit();
   const updateHabit = useUpdateHabit();
   const unarchiveTask = useUnarchiveTask();
+<<<<<<< HEAD
   const dataExport = useDataExport();
   const { toast } = useToast();
 
@@ -66,6 +100,15 @@ export default function Settings() {
   useEffect(() => {
     loadAIConfigFromDatabase().then(setAIConfig);
   }, []);
+=======
+  const { toast } = useToast();
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [templateDialogOpen, setTemplateDialogOpen] = useState(false);
+  const [editingHabit, setEditingHabit] = useState<Habit | null>(null);
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [xpInput, setXpInput] = useState('');
+>>>>>>> cf46c6e (Initial commit: project files)
   
   // Controlled accordion state - starts with none open
   const [openSections, setOpenSections] = useState<string[]>([]);
@@ -82,6 +125,7 @@ export default function Settings() {
     }
   };
 
+<<<<<<< HEAD
   const handleExport = async () => {
     if (exportDateRange === 'custom' && (!customStartDate || !customEndDate)) {
       toast({
@@ -100,6 +144,8 @@ export default function Settings() {
     });
   };
 
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
   const handleAddHabit = () => {
     setEditingHabit(null);
     setDialogOpen(true);
@@ -116,6 +162,10 @@ export default function Settings() {
     frequency_days: number[];
     xp_reward: number;
     is_bad_habit: boolean;
+<<<<<<< HEAD
+=======
+    category: 'health' | 'productivity' | 'social' | 'learning' | 'wellness' | 'other';
+>>>>>>> cf46c6e (Initial commit: project files)
   }) => {
     try {
       if (editingHabit) {
@@ -157,6 +207,7 @@ export default function Settings() {
       toast({ title: 'Error', description: 'Failed to restore task', variant: 'destructive' });
     }
   };
+<<<<<<< HEAD
   // AI Configuration handlers
   const handleSaveAIConfig = async () => {
     if (!aiConfig) return;
@@ -250,6 +301,9 @@ export default function Settings() {
     }
   };
   
+=======
+
+>>>>>>> cf46c6e (Initial commit: project files)
   const handleLevelChange = async (delta: number) => {
     if (!profile) return;
     const newLevel = Math.max(1, profile.level + delta);
@@ -263,6 +317,7 @@ export default function Settings() {
 
   const handleSetXP = async () => {
     if (!profile) return;
+<<<<<<< HEAD
     const xp = parseInt(xpInput);
     if (isNaN(xp) || xp < 0) {
       toast({ title: 'Invalid', description: 'Enter a valid positive number', variant: 'destructive' });
@@ -271,6 +326,25 @@ export default function Settings() {
     try {
       await updateProfile.mutateAsync({ xp });
       toast({ title: 'XP Updated', description: `XP set to ${xp}` });
+=======
+    
+    // Validate XP input
+    const validation = SettingsXPSchema.safeParse({ xp: xpInput });
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({ 
+        title: 'Validation Error', 
+        description: firstError.message, 
+        variant: 'destructive' 
+      });
+      return;
+    }
+    
+    try {
+      await updateProfile.mutateAsync({ xp: validation.data.xp });
+      toast({ title: 'XP Updated', description: `XP set to ${validation.data.xp}` });
+>>>>>>> cf46c6e (Initial commit: project files)
       setXpInput('');
     } catch (error) {
       toast({ title: 'Error', description: 'Failed to update XP', variant: 'destructive' });
@@ -287,6 +361,7 @@ export default function Settings() {
     }
   };
 
+<<<<<<< HEAD
   const handleDayStartHourChange = async (hour: number) => {
     try {
       await updateProfile.mutateAsync({ day_start_hour: hour });
@@ -303,6 +378,12 @@ export default function Settings() {
     <div className="space-y-6 pb-24 md:pb-8">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <h1 className="text-xl font-bold">Settings</h1>
+=======
+  return (
+    <div className="space-y-6 pb-28 md:pb-8">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <h1 className="text-xl md:text-2xl font-bold">Settings</h1>
+>>>>>>> cf46c6e (Initial commit: project files)
         <p className="text-sm text-muted-foreground">{user?.email}</p>
       </motion.div>
 
@@ -320,6 +401,7 @@ export default function Settings() {
               <span className="font-semibold">My System</span>
             </div>
           </AccordionTrigger>
+<<<<<<< HEAD
           <AccordionContent className="px-4 pb-4">
             <MySystemSection
               activeHabits={activeHabits}
@@ -335,6 +417,111 @@ export default function Settings() {
               onSeedPlan={handleSeedPlan}
               onDayStartHourChange={handleDayStartHourChange}
             />
+=======
+          <AccordionContent className="px-4 pb-4 space-y-4">
+            {/* Manage Habits */}
+            <div className="bg-secondary/30 rounded-lg p-3 md:p-4">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-medium text-sm md:text-base">Manage Habits</h4>
+                <Button size="sm" onClick={handleAddHabit} className="min-h-[44px] min-w-[44px]">
+                  <Plus className="w-4 h-4 md:mr-1" />
+                  <span className="hidden md:inline">Add Habit</span>
+                </Button>
+              </div>
+              
+              {activeHabits.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No active habits. Add one or load the default plan.</p>
+              ) : (
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {activeHabits.map(habit => (
+                    <div key={habit.id} className="flex items-center justify-between p-2 bg-background/50 rounded-lg">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium truncate">{habit.title}</span>
+                          <Badge variant="outline" className="text-xs shrink-0">
+                            {habit.xp_reward || 10} XP
+                          </Badge>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => handleEditHabit(habit)}>
+                          <Pencil className="w-3 h-3" />
+                        </Button>
+                        {/* Pause/Resume functionality removed: usePauseHabit is not implemented. */}
+                        <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => archiveHabit.mutate({ id: habit.id, archived: true })}>
+                          <Archive className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Load Plan */}
+            <div className="bg-secondary/30 rounded-lg p-4">
+              <div className="flex items-center gap-3 mb-2">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <h4 className="font-medium">Load Habit Templates</h4>
+              </div>
+              <p className="text-xs text-muted-foreground mb-3">
+                Choose from pre-made habit packs: Productivity, Health, Mindfulness, Learning, or Social.
+              </p>
+              <div className="flex gap-2">
+                <Button size="sm" onClick={() => setTemplateDialogOpen(true)}>
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Browse Templates
+                </Button>
+                <Button size="sm" variant="outline" onClick={handleSeedPlan} disabled={seedPlan.isPending}>
+                  {seedPlan.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  Load Default
+                </Button>
+              </div>
+            </div>
+
+            {/* Archived Habits */}
+            {archivedHabits.length > 0 && (
+              <div className="bg-secondary/30 rounded-lg p-4">
+                <h4 className="font-medium mb-3">Archived Habits</h4>
+                <div className="space-y-2 max-h-32 overflow-y-auto">
+                  {archivedHabits.map(habit => (
+                    <div key={habit.id} className="flex items-center justify-between p-2 bg-background/50 rounded">
+                      <span className="text-sm truncate flex-1 text-muted-foreground">{habit.title}</span>
+                      <div className="flex items-center gap-1">
+                        <Button variant="ghost" size="sm" onClick={() => archiveHabit.mutate({ id: habit.id, archived: false })}>
+                          <RotateCcw className="w-3 h-3" />
+                        </Button>
+                        <Button variant="ghost" size="sm" className="text-destructive" onClick={() => setDeleteConfirmId(habit.id)}>
+                          <Trash2 className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Paused Habits */}
+            {/* Paused Habits section removed: usePausedHabits is not implemented. */}
+
+            {/* Archived Tasks */}
+            {archivedTasks && archivedTasks.length > 0 && (
+              <div className="bg-secondary/30 rounded-lg p-4">
+                <h4 className="font-medium mb-3">Archived Tasks</h4>
+                <div className="space-y-2 max-h-32 overflow-y-auto">
+                  {archivedTasks.map(task => (
+                    <div key={task.id} className="flex items-center justify-between p-2 bg-background/50 rounded">
+                      <span className="text-sm truncate flex-1 text-muted-foreground">{task.title}</span>
+                      <Button variant="ghost" size="sm" onClick={() => handleRestoreTask(task.id)}>
+                        <RotateCcw className="w-3 h-3 mr-1" />
+                        Restore
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+>>>>>>> cf46c6e (Initial commit: project files)
           </AccordionContent>
         </AccordionItem>
 
@@ -346,6 +533,7 @@ export default function Settings() {
               <span className="font-semibold">Brain & Data</span>
             </div>
           </AccordionTrigger>
+<<<<<<< HEAD
           <AccordionContent className="px-4 pb-4">
             <BrainDataSection
               exportDateRange={exportDateRange}
@@ -401,6 +589,25 @@ export default function Settings() {
           </AccordionTrigger>
           <AccordionContent className="px-4 pb-4">
             <AIUsageTab />
+=======
+          <AccordionContent className="px-4 pb-4 space-y-4">
+            {/* Local Neural Core Status */}
+            <div className="bg-secondary/30 rounded-lg p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-sm font-medium">Local Neural Core: Active</span>
+                </div>
+                <CheckCircle className="w-4 h-4 text-emerald-500" />
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                The Drill Sergeant uses a local algorithm for instant feedback (0ms latency, 100% uptime).
+              </p>
+            </div>
+
+            {/* Import/Export Section */}
+            <ImportDataSection />
+>>>>>>> cf46c6e (Initial commit: project files)
           </AccordionContent>
         </AccordionItem>
 
@@ -412,6 +619,7 @@ export default function Settings() {
               <span className="font-semibold text-destructive">Danger Zone</span>
             </div>
           </AccordionTrigger>
+<<<<<<< HEAD
           <AccordionContent className="px-4 pb-4">
             <DangerZoneSection
               profile={profile ?? undefined}
@@ -422,6 +630,64 @@ export default function Settings() {
               onResetRound={handleResetRound}
               onSignOut={signOut}
             />
+=======
+          <AccordionContent className="px-4 pb-4 space-y-4">
+            {profile && (
+              <>
+                {/* Level Manager */}
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Level: {profile.level}</span>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => handleLevelChange(-1)}
+                      disabled={profile.level <= 1}
+                    >
+                      <Minus className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => handleLevelChange(1)}
+                    >
+                      <Plus className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+                
+                {/* XP Manager */}
+                <div className="flex items-center gap-2">
+                  <Input
+                    type="number"
+                    placeholder={`Current: ${profile.xp} XP`}
+                    value={xpInput}
+                    onChange={(e) => setXpInput(e.target.value)}
+                    className="flex-1"
+                  />
+                  <Button variant="outline" onClick={handleSetXP}>
+                    Set XP
+                  </Button>
+                </div>
+                
+                {/* Reset Round */}
+                <Button 
+                  variant="outline" 
+                  className="w-full border-destructive/50 text-destructive hover:bg-destructive/10"
+                  onClick={handleResetRound}
+                >
+                  Reset Round (XP=0, HP=100)
+                </Button>
+              </>
+            )}
+
+            <Button variant="destructive" className="w-full justify-start gap-2" onClick={signOut}>
+              <LogOut className="w-4 h-4" />
+              Sign Out
+            </Button>
+>>>>>>> cf46c6e (Initial commit: project files)
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -434,6 +700,14 @@ export default function Settings() {
         isLoading={createHabit.isPending || updateHabit.isPending}
       />
 
+<<<<<<< HEAD
+=======
+      <HabitTemplateDialog
+        open={templateDialogOpen}
+        onOpenChange={setTemplateDialogOpen}
+      />
+
+>>>>>>> cf46c6e (Initial commit: project files)
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={!!deleteConfirmId} onOpenChange={() => setDeleteConfirmId(null)}>
         <AlertDialogContent>

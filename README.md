@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Life OS (React + Vite)
+=======
+# Welcome to your Lovable project
+>>>>>>> cf46c6e (Initial commit: project files)
 
 ## Project info
 
@@ -60,6 +64,7 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+<<<<<<< HEAD
 ## Local development
 
 ```sh
@@ -155,3 +160,16 @@ add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
 add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" always;
 ```
+=======
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/8f0c54c3-ed54-4412-9b44-d47918410688) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+>>>>>>> cf46c6e (Initial commit: project files)

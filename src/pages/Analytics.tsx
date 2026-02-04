@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -165,6 +166,166 @@ export default function Analytics() {
           <RankTiersCard />
         </TabsContent>
       </Tabs>
+=======
+import { motion } from 'framer-motion';
+import { useConsistencyScore } from '@/hooks/useAnalytics';
+import { useDailySummaries } from '@/hooks/useDailySummary';
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
+import { TrendingUp, BookOpen } from 'lucide-react';
+import { formatDateShort } from '@/lib/time-utils';
+import { HabitHeatmap } from '@/components/analytics/HabitHeatmap';
+import { XPHPChart } from '@/components/analytics/XPHPChart';
+import { TopPerformers } from '@/components/analytics/TopPerformers';
+import { StreakCard } from '@/components/analytics/StreakCard';
+
+export default function Analytics() {
+  const { data: consistency, isLoading: consistencyLoading } = useConsistencyScore();
+  const { data: summaries, isLoading: summariesLoading } = useDailySummaries();
+
+  return (
+    <div className="space-y-6 pb-28 md:pb-8">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <h1 className="text-xl md:text-2xl font-bold">Analytics</h1>
+        <p className="text-sm text-muted-foreground">Track your progress over time</p>
+      </motion.div>
+
+      {/* XP & HP Trends Chart */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <XPHPChart />
+      </motion.div>
+
+      {/* Heatmap */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+      >
+        <HabitHeatmap />
+      </motion.div>
+
+      {/* Two-column layout for Streaks and Top Performers */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <StreakCard />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+        >
+          <TopPerformers />
+        </motion.div>
+      </div>
+
+      {/* Consistency Score */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="bg-card border border-border rounded-xl p-6 text-center"
+      >
+        <TrendingUp className="w-8 h-8 mx-auto text-primary mb-2" />
+        <div className="text-5xl font-bold text-primary mb-1">
+          {consistencyLoading ? '--' : `${consistency?.score || 0}%`}
+        </div>
+        <p className="text-sm text-muted-foreground">Consistency Score (Last 30 Days)</p>
+      </motion.div>
+
+      {/* Trend Chart */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+        className="bg-card border border-border rounded-xl p-4"
+      >
+        <h3 className="font-semibold mb-4">Consistency Trend</h3>
+        {consistency?.data && (
+          <div className="h-48 w-full overflow-x-auto -mx-4 px-4">
+            <div className="min-w-[320px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={consistency.data.slice(-14)}>
+                  <XAxis 
+                    dataKey="date" 
+                    tickFormatter={(v) => formatDateShort(v)}
+                    stroke="hsl(var(--muted-foreground))"
+                    fontSize={10}
+                  />
+                  <YAxis 
+                    domain={[0, 100]} 
+                    stroke="hsl(var(--muted-foreground))"
+                    fontSize={10}
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      background: 'hsl(var(--card))', 
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px'
+                    }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="consistency" 
+                    stroke="hsl(var(--primary))" 
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        )}
+      </motion.div>
+
+      {/* Journal Archive */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-card border border-border rounded-xl p-4"
+      >
+        <div className="flex items-center gap-2 mb-4">
+          <BookOpen className="w-5 h-5" />
+          <h3 className="font-semibold">Journal Archive</h3>
+        </div>
+        
+        {summariesLoading ? (
+          <div className="space-y-3">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="h-16 bg-muted rounded animate-pulse" />
+            ))}
+          </div>
+        ) : summaries?.length === 0 ? (
+          <p className="text-sm text-muted-foreground text-center py-6">
+            No journal entries yet. Complete a nightly review to start.
+          </p>
+        ) : (
+          <div className="space-y-3 max-h-64 overflow-y-auto">
+            {summaries?.map(summary => (
+              <div key={summary.id} className="p-3 bg-secondary/50 rounded-lg border border-border">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs text-muted-foreground">{formatDateShort(summary.date)}</span>
+                  <div className="flex gap-2 text-xs">
+                    <span className="text-primary">+{summary.xp_earned} XP</span>
+                    <span className="text-destructive">-{summary.hp_lost} HP</span>
+                  </div>
+                </div>
+                {summary.notes && (
+                  <p className="text-sm line-clamp-2">{summary.notes}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </motion.div>
+>>>>>>> cf46c6e (Initial commit: project files)
     </div>
   );
 }

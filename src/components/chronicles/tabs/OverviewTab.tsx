@@ -6,6 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Loader2, Bed, Footprints, Zap, RefreshCw } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { generateLocalRoast } from '@/lib/local-roast';
+<<<<<<< HEAD
+=======
+import { MetricsInputSchema } from '@/lib/validation';
+>>>>>>> cf46c6e (Initial commit: project files)
 
 interface OverviewTabProps {
   date: string;
@@ -42,10 +46,37 @@ export function OverviewTab({ date }: OverviewTabProps) {
   const totalHabits = scheduledHabits.length;
 
   const handleSleepBlur = async () => {
+<<<<<<< HEAD
     const value = parseFloat(sleepInput);
     if (!isNaN(value) && value >= 0) {
       try {
         await updateMetric.mutateAsync({ date, metricId: 'sleep', value });
+=======
+    if (!sleepInput || sleepInput.trim() === '') {
+      setSleepInput('');
+      return;
+    }
+    
+    const validation = MetricsInputSchema.safeParse({ 
+      sleep: sleepInput,
+      steps: '0' // dummy value for schema
+    });
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({ 
+        title: 'Invalid Sleep Value', 
+        description: firstError.message, 
+        variant: 'destructive' 
+      });
+      setSleepInput('');
+      return;
+    }
+    
+    if (validation.data.sleep !== null) {
+      try {
+        await updateMetric.mutateAsync({ date, metricId: 'sleep', value: validation.data.sleep });
+>>>>>>> cf46c6e (Initial commit: project files)
         toast({ title: 'Sleep updated' });
       } catch (error) {
         toast({ title: 'Failed to update sleep', variant: 'destructive' });
@@ -55,10 +86,37 @@ export function OverviewTab({ date }: OverviewTabProps) {
   };
 
   const handleStepsBlur = async () => {
+<<<<<<< HEAD
     const value = parseInt(stepsInput);
     if (!isNaN(value) && value >= 0) {
       try {
         await updateMetric.mutateAsync({ date, metricId: 'steps', value });
+=======
+    if (!stepsInput || stepsInput.trim() === '') {
+      setStepsInput('');
+      return;
+    }
+    
+    const validation = MetricsInputSchema.safeParse({ 
+      steps: stepsInput,
+      sleep: '0' // dummy value for schema
+    });
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({ 
+        title: 'Invalid Steps Value', 
+        description: firstError.message, 
+        variant: 'destructive' 
+      });
+      setStepsInput('');
+      return;
+    }
+    
+    if (validation.data.steps !== null) {
+      try {
+        await updateMetric.mutateAsync({ date, metricId: 'steps', value: validation.data.steps });
+>>>>>>> cf46c6e (Initial commit: project files)
         toast({ title: 'Steps updated' });
       } catch (error) {
         toast({ title: 'Failed to update steps', variant: 'destructive' });

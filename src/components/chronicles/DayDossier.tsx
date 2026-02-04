@@ -70,7 +70,11 @@ export function DayDossier({ date, onClose, inline }: DayDossierProps) {
   // Dialog mode for mobile
   return (
     <Dialog open={!!date} onOpenChange={(open) => !open && onClose()}>
+<<<<<<< HEAD
       <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto p-4 sm:p-6">
+=======
+      <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto">
+>>>>>>> cf46c6e (Initial commit: project files)
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between">
             <span className="flex items-center gap-2">

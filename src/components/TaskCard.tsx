@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState, useRef, useEffect, memo } from 'react';
+=======
+import { useState, useRef, useEffect } from 'react';
+>>>>>>> cf46c6e (Initial commit: project files)
 import { motion } from 'framer-motion';
 import { Task, useCompleteTask, useMoveTask, useArchiveTask, useRestoreTask } from '@/hooks/useTasks';
 import { useAddXP } from '@/hooks/useProfile';
@@ -9,7 +13,11 @@ import { ChevronRight, ChevronLeft, Pencil, Archive } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { formatDateShort, isOverdue, isDueToday } from '@/lib/time-utils';
 import { useToast } from '@/hooks/use-toast';
+<<<<<<< HEAD
 import { XP_PER_COMPLETE } from '@/lib/rpg-utils';
+=======
+import { getTaskXP } from '@/lib/rpg-utils';
+>>>>>>> cf46c6e (Initial commit: project files)
 import { TaskEditDialog } from './TaskEditDialog';
 import {
   AlertDialog,
@@ -26,9 +34,39 @@ interface TaskCardProps {
   task: Task;
   showMoveRight?: boolean;
   showMoveLeft?: boolean;
+<<<<<<< HEAD
 }
 
 export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
+=======
+  selectMode?: boolean;
+  selected?: boolean;
+  onSelect?: (id: string) => void;
+  swipeToComplete?: boolean;
+  archivedView?: boolean;
+}
+
+export function TaskCard({ task, showMoveRight, showMoveLeft, selectMode, selected, onSelect, swipeToComplete, archivedView }: TaskCardProps) {
+    // Swipe-to-complete (mobile)
+    const [swiped, setSwiped] = useState(false);
+    const touchStartX = useRef<number | null>(null);
+    const handleTouchStart = (e: React.TouchEvent) => {
+      if (!swipeToComplete) return;
+      touchStartX.current = e.touches[0].clientX;
+    };
+    const handleTouchEnd = async (e: React.TouchEvent) => {
+      if (!swipeToComplete || task.completed) return;
+      if (touchStartX.current !== null) {
+        const delta = e.changedTouches[0].clientX - touchStartX.current;
+        if (delta > 80) { // swipe right
+          setSwiped(true);
+          await handleComplete(true, { clientX: e.changedTouches[0].clientX, clientY: e.changedTouches[0].clientY } as any);
+          setTimeout(() => setSwiped(false), 500);
+        }
+      }
+      touchStartX.current = null;
+    };
+>>>>>>> cf46c6e (Initial commit: project files)
   const [editOpen, setEditOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
@@ -55,6 +93,7 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
   }, [task.description]);
 
   const handleComplete = async (checked: boolean, e: React.MouseEvent) => {
+<<<<<<< HEAD
     await completeTask.mutateAsync({ id: task.id, completed: checked });
     
     if (checked) {
@@ -75,6 +114,44 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
           </Button>
         ),
       });
+=======
+    if (checked) {
+      const xpGained = getTaskXP(task.priority);
+      showXPFloater(e.clientX, e.clientY, xpGained);
+      
+      try {
+        await completeTask.mutateAsync({ id: task.id, completed: checked });
+        const result = await addXP.mutateAsync(xpGained);
+        
+        if (result.leveledUp) {
+          toast({
+            title: '🎉 Level Up!',
+            description: `You reached Level ${result.data.level}! HP restored.`,
+          });
+        } else {
+          toast({
+            title: 'Task Completed',
+            description: `${task.title} (+${xpGained} XP)`,
+            action: (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={async () => {
+                  await completeTask.mutateAsync({ id: task.id, completed: false });
+                  await addXP.mutateAsync(-xpGained); // Subtract XP on undo
+                }}
+              >
+                Undo
+              </Button>
+            ),
+          });
+        }
+      } catch (error) {
+        console.error('Error completing task:', error);
+      }
+    } else {
+      await completeTask.mutateAsync({ id: task.id, completed: checked });
+>>>>>>> cf46c6e (Initial commit: project files)
     }
   };
 
@@ -113,13 +190,28 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
         exit={{ opacity: 0, scale: 0.95 }}
         className={cn(
           'group flex items-start gap-3 p-3 bg-secondary/50 rounded-lg border border-border border-l-4',
+<<<<<<< HEAD
           getPriorityColor()
         )}
       >
+=======
+          getPriorityColor(),
+          swiped && 'bg-green-100 dark:bg-green-900',
+          selectMode && 'pl-2',
+          archivedView && 'opacity-60 pointer-events-none',
+        )}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {selectMode && (
+          <Checkbox checked={selected} onCheckedChange={() => onSelect?.(task.id)} className="mt-1" />
+        )}
+>>>>>>> cf46c6e (Initial commit: project files)
         {showMoveLeft && !isLockedToToday && (
           <Button
             variant="ghost"
             size="icon"
+<<<<<<< HEAD
             className="h-8 w-8 shrink-0 mt-0.5"
             onClick={() => handleMove(false)}
             aria-label="Move task to backlog"
@@ -136,6 +228,19 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
           aria-label={`Mark ${task.title} as ${task.completed ? 'incomplete' : 'complete'}`}
         />
 
+=======
+            className="h-10 w-10 min-h-[44px] min-w-[44px] shrink-0"
+            onClick={() => handleMove(false)}
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
+        )}
+        <Checkbox
+          checked={task.completed}
+          onCheckedChange={(checked) => handleComplete(!!checked, { clientX: 0, clientY: 0 })}
+          className="shrink-0 mt-1 min-h-[24px] min-w-[24px]"
+        />
+>>>>>>> cf46c6e (Initial commit: project files)
         <div className="flex-1 min-w-0">
           <span className={cn(
             'text-sm block break-words whitespace-normal',
@@ -175,6 +280,7 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
             </span>
           )}
         </div>
+<<<<<<< HEAD
 
         <Button
           variant="ghost"
@@ -196,10 +302,29 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
           <Pencil className="w-4 h-4" aria-hidden="true" />
         </Button>
 
+=======
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-10 w-10 min-h-[44px] min-w-[44px] shrink-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground"
+          onClick={() => setArchiveDialogOpen(true)}
+        >
+          <Archive className="w-4 h-4" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-10 w-10 min-h-[44px] min-w-[44px] shrink-0"
+          onClick={() => setEditOpen(true)}
+        >
+          <Pencil className="w-4 h-4" />
+        </Button>
+>>>>>>> cf46c6e (Initial commit: project files)
         {showMoveRight && (
           <Button
             variant="ghost"
             size="icon"
+<<<<<<< HEAD
             className="h-8 w-8 shrink-0"
             onClick={() => handleMove(true)}
             aria-label="Move task to today"
@@ -209,12 +334,24 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
         )}
       </motion.div>
 
+=======
+            className="h-10 w-10 min-h-[44px] min-w-[44px] shrink-0"
+            onClick={() => handleMove(true)}
+          >
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+        )}
+      </motion.div>
+>>>>>>> cf46c6e (Initial commit: project files)
       <TaskEditDialog
         task={task}
         open={editOpen}
         onOpenChange={setEditOpen}
       />
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
       {/* Archive Confirmation Dialog */}
       <AlertDialog open={archiveDialogOpen} onOpenChange={setArchiveDialogOpen}>
         <AlertDialogContent>
@@ -235,5 +372,8 @@ export function TaskCard({ task, showMoveRight, showMoveLeft }: TaskCardProps) {
     </>
   );
 }
+<<<<<<< HEAD
 
 export default memo(TaskCard);
+=======
+>>>>>>> cf46c6e (Initial commit: project files)

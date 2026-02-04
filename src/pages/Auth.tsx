@@ -5,12 +5,17 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+<<<<<<< HEAD
 import { Sparkles, Loader2, Check, X } from 'lucide-react';
+=======
+import { Sparkles, Loader2 } from 'lucide-react';
+>>>>>>> cf46c6e (Initial commit: project files)
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
 
 const authSchema = z.object({
   email: z.string().email('Invalid email address'),
+<<<<<<< HEAD
   password: z.string()
     .min(8, 'Password must be at least 8 characters')
     .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
@@ -28,6 +33,11 @@ const passwordRequirements = [
   { label: 'One special character', test: (pwd: string) => /[^A-Za-z0-9]/.test(pwd) },
 ];
 
+=======
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+});
+
+>>>>>>> cf46c6e (Initial commit: project files)
 export default function Auth() {
   const { user, loading, signIn, signUp } = useAuth();
   const { toast } = useToast();
@@ -148,6 +158,7 @@ export default function Auth() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+<<<<<<< HEAD
                 {password && (
                   <div className="mt-2 space-y-1">
                     {passwordRequirements.map((req, index) => {
@@ -167,6 +178,8 @@ export default function Auth() {
                     })}
                   </div>
                 )}
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
               </div>
               <Button 
                 className="w-full" 

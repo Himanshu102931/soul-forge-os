@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Trophy, ChevronDown } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -73,5 +74,130 @@ export function TopPerformers({ habitStats, statsLoading, isOpen, onOpenChange }
         </CollapsibleContent>
       </div>
     </Collapsible>
+=======
+import { useState } from 'react';
+import { useTopPerformers } from '@/hooks/useAnalytics';
+import { Trophy, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+
+export function TopPerformers() {
+  const { data: performers, isLoading } = useTopPerformers(30);
+  const [showAll, setShowAll] = useState(false);
+
+  if (isLoading) {
+    return (
+      <div className="bg-card border border-border rounded-xl p-4 md:p-6">
+        <div className="h-48 flex items-center justify-center">
+          <div className="text-sm text-muted-foreground">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!performers || performers.length === 0) {
+    return (
+      <div className="bg-card border border-border rounded-xl p-4 md:p-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Trophy className="w-5 h-5 text-yellow-500" />
+          <h3 className="font-semibold text-base md:text-lg">Top Performers</h3>
+        </div>
+        <div className="h-32 flex items-center justify-center">
+          <div className="text-sm text-muted-foreground">No habits tracked yet</div>
+        </div>
+      </div>
+    );
+  }
+
+  const getMedalColor = (index: number) => {
+    switch (index) {
+      case 0:
+        return 'text-yellow-500'; // Gold
+      case 1:
+        return 'text-gray-400'; // Silver
+      case 2:
+        return 'text-amber-600'; // Bronze
+      default:
+        return 'text-muted-foreground';
+    }
+  };
+
+  return (
+    <div className="bg-card border border-border rounded-xl p-4 md:p-6">
+      <div className="flex items-center gap-2 mb-4">
+        <Trophy className="w-5 h-5 text-yellow-500" />
+        <h3 className="font-semibold text-base md:text-lg">Top Performers</h3>
+        <span className="text-xs text-muted-foreground ml-auto">Last 30 days</span>
+      </div>
+
+      <div className="space-y-3">
+        {performers.slice(0, showAll ? performers.length : 3).map((performer, index) => (
+          <motion.div
+            key={performer.habitId}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.05 }}
+            className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+          >
+            {/* Rank */}
+            <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center font-bold ${getMedalColor(index)}`}>
+              {index < 3 ? <Trophy className="w-4 h-4" /> : `#${index + 1}`}
+            </div>
+
+            {/* Habit title */}
+            <div className="flex-1 min-w-0">
+              <div className="font-medium text-sm truncate">{performer.habitTitle}</div>
+              <div className="text-xs text-muted-foreground">
+                {performer.completedDays}/{performer.totalDays} days
+              </div>
+            </div>
+
+            {/* Completion rate */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="text-right">
+                <div className="text-lg font-bold text-primary">
+                  {Math.round(performer.completionRate)}%
+                </div>
+              </div>
+              {performer.completionRate === 100 && (
+                <TrendingUp className="w-4 h-4 text-green-500" />
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Expand/Collapse button */}
+      {performers.length > 3 && (
+        <div className="mt-4 pt-4 border-t border-border">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowAll(!showAll)}
+            className="w-full text-xs"
+          >
+            {showAll ? (
+              <>
+                <ChevronUp className="w-3 h-3 mr-1" />
+                Show Less
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-3 h-3 mr-1" />
+                Show All ({performers.length} habits)
+              </>
+            )}
+          </Button>
+        </div>
+      )}
+
+      {/* Footer note */}
+      {performers.length > 0 && (
+        <div className="mt-2 text-xs text-muted-foreground text-center">
+          Ranked by completion rate over scheduled days
+        </div>
+      )}
+    </div>
+>>>>>>> cf46c6e (Initial commit: project files)
   );
 }

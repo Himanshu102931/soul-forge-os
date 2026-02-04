@@ -3,6 +3,10 @@ import { Task, useUpdateTask, useDeleteTask } from '@/hooks/useTasks';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+<<<<<<< HEAD
+=======
+import { TaskUpdateSchema } from '@/lib/validation';
+>>>>>>> cf46c6e (Initial commit: project files)
 import {
   Dialog,
   DialogContent,
@@ -54,19 +58,50 @@ export function TaskEditDialog({ task, open, onOpenChange }: TaskEditDialogProps
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+<<<<<<< HEAD
     if (!task || !title.trim()) return;
 
     await updateTask.mutateAsync({
       id: task.id,
+=======
+    if (!task) return;
+    
+    // Validate form data
+    const formData = {
+>>>>>>> cf46c6e (Initial commit: project files)
       title: title.trim(),
       description: description.trim() || null,
       priority,
       due_date: dueDate ? format(dueDate, 'yyyy-MM-dd') : null,
+<<<<<<< HEAD
+=======
+    };
+    
+    const validation = TaskUpdateSchema.safeParse(formData);
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({
+        title: 'Validation Error',
+        description: firstError.message,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    await updateTask.mutateAsync({
+      id: task.id,
+      ...validation.data,
+>>>>>>> cf46c6e (Initial commit: project files)
     });
 
     toast({
       title: 'Task updated',
+<<<<<<< HEAD
       description: title.trim(),
+=======
+      description: validation.data.title,
+>>>>>>> cf46c6e (Initial commit: project files)
     });
 
     onOpenChange(false);
@@ -107,9 +142,15 @@ export function TaskEditDialog({ task, open, onOpenChange }: TaskEditDialogProps
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
+<<<<<<< HEAD
       <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader className="sticky top-0 bg-background z-10">
           <DialogTitle className="text-lg">Edit Task</DialogTitle>
+=======
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Edit Task</DialogTitle>
+>>>>>>> cf46c6e (Initial commit: project files)
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">

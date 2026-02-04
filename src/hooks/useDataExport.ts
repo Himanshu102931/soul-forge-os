@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+<<<<<<< HEAD
 import { GAMIFICATION_ACHIEVEMENTS, calculateUserLevel } from '@/lib/gamification-utils';
 import { calculateMasteryInfo } from '@/lib/mastery-utils';
 
@@ -237,11 +238,18 @@ function getWeekNumber(date: Date): string {
   const weekNo = Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
   return `${d.getUTCFullYear()}-W${weekNo.toString().padStart(2, '0')}`;
 }
+=======
+import { stringifyCSV } from '@/lib/csv-utils';
+
+type ExportEntity = 'profiles' | 'habits' | 'habit_logs' | 'tasks' | 'daily_summaries' | 'metric_logs';
+type ExportFormat = 'json' | 'csv-combined' | 'csv-individual';
+>>>>>>> cf46c6e (Initial commit: project files)
 
 export function useDataExport() {
   const { user } = useAuth();
   const { toast } = useToast();
 
+<<<<<<< HEAD
   const getDateRange = (option: DateRangeOption, customStart?: string, customEnd?: string) => {
     const today = new Date();
     let startDate: Date;
@@ -846,8 +854,233 @@ export function useDataExport() {
       toast({
         title: 'Export Failed',
         description: error instanceof Error ? error.message : 'Failed to export data',
+=======
+  return useMutation({
+    mutationFn: async ({
+      entities,
+      format,
+      startDate,
+      endDate,
+    }: {
+      entities: ExportEntity[];
+      format: ExportFormat;
+      startDate?: string;
+      endDate?: string;
+    }) => {
+      if (!user) throw new Error('Not authenticated');
+      if (entities.length === 0) throw new Error('Please select at least one entity to export');
+
+      const exportedData: Record<string, unknown> = {};
+      const csvData: Record<string, Record<string, unknown>[]> = {};
+
+      // First, fetch profiles to get user data
+      let userHabits: Record<string, unknown>[] = [];
+
+      // Fetch data for each entity
+      for (const entity of entities) {
+        try {
+          if (entity === 'profiles') {
+            const { data, error } = await supabase.from('profiles').select('*').eq('id', user.id);
+            if (error) throw error;
+            exportedData[entity] = data || [];
+            csvData[entity] = data || [];
+          } else if (entity === 'habits') {
+            let query = supabase.from('habits').select('*').eq('user_id', user.id);
+            // Habits don't have dates, so no filtering
+            const { data, error } = await query;
+            if (error) throw error;
+            userHabits = data || [];
+            exportedData[entity] = userHabits;
+            csvData[entity] = userHabits;
+          } else if (entity === 'habit_logs') {
+            // habit_logs don't have user_id; fetch by habit_id instead
+            if (userHabits.length === 0) {
+              const { data: habits, error: habitsError } = await supabase
+                .from('habits')
+                .select('id')
+                .eq('user_id', user.id);
+              if (habitsError) throw habitsError;
+              userHabits = habits || [];
+            }
+
+            if (userHabits.length > 0) {
+              const habitIds = userHabits.map((h) => (h as Record<string, unknown>).id as string);
+              let query = supabase.from('habit_logs').select('*').in('habit_id', habitIds);
+              
+              // Apply date filtering
+              if (startDate) query = query.gte('date', startDate);
+              if (endDate) query = query.lte('date', endDate);
+              
+              const { data, error } = await query;
+              if (error) throw error;
+              exportedData[entity] = data || [];
+              csvData[entity] = data || [];
+            } else {
+              exportedData[entity] = [];
+              csvData[entity] = [];
+            }
+          } else if (entity === 'tasks') {
+            let query = supabase.from('tasks').select('*').eq('user_id', user.id);
+            
+            // Apply date filtering for both created_at and due_date
+            if (startDate || endDate) {
+              // We need to filter by both dates, so fetch all and filter manually
+              const { data, error } = await query;
+              if (error) throw error;
+              
+              const filtered = (data || []).filter((task: unknown) => {
+                const t = task as Record<string, unknown>;
+                const createdAt = t.created_at as string | undefined;
+                const dueDate = t.due_date as string | undefined;
+                
+                const createdInRange = !createdAt || ((!startDate || createdAt >= startDate) && (!endDate || createdAt <= endDate));
+                const dueInRange = !dueDate || ((!startDate || dueDate >= startDate) && (!endDate || dueDate <= endDate));
+                
+                return createdInRange || dueInRange;
+              });
+              
+              exportedData[entity] = filtered;
+              csvData[entity] = filtered;
+            } else {
+              const { data, error } = await query;
+              if (error) throw error;
+              exportedData[entity] = data || [];
+              csvData[entity] = data || [];
+            }
+          } else if (entity === 'daily_summaries') {
+            let query = supabase.from('daily_summaries').select('*').eq('user_id', user.id);
+            
+            // Apply date filtering
+            if (startDate) query = query.gte('date', startDate);
+            if (endDate) query = query.lte('date', endDate);
+            
+            const { data, error } = await query;
+            if (error) throw error;
+            exportedData[entity] = data || [];
+            csvData[entity] = data || [];
+          } else if (entity === 'metric_logs') {
+            let query = supabase.from('metric_logs').select('*').eq('user_id', user.id);
+            
+            // Apply date filtering
+            if (startDate) query = query.gte('date', startDate);
+            if (endDate) query = query.lte('date', endDate);
+            
+            const { data, error } = await query;
+            if (error) throw error;
+            exportedData[entity] = data || [];
+            csvData[entity] = data || [];
+          }
+        } catch (error: unknown) {
+          const msg = error instanceof Error ? error.message : String(error);
+          console.error(`Error fetching ${entity}:`, msg);
+          throw new Error(`Failed to fetch ${entity}: ${msg}`);
+        }
+      }
+
+      // Generate files based on format
+      if (format === 'json') {
+        // Return JSON export
+        return {
+          filename: `soul-forge-export-${new Date().toISOString().split('T')[0]}.json`,
+          content: JSON.stringify(
+            {
+              version: '1.0',
+              exported_at: new Date().toISOString(),
+              ...exportedData,
+            },
+            null,
+            2
+          ),
+          type: 'application/json',
+        };
+      } else if (format === 'csv-combined') {
+        // Combine all entities into one CSV with table_type column
+        const allRows: Record<string, unknown>[] = [];
+
+        for (const entity of entities) {
+          const rows = csvData[entity];
+          for (const row of rows) {
+            allRows.push({
+              table_type: entity,
+              ...row,
+            });
+          }
+        }
+
+        return {
+          filename: `soul-forge-export-${new Date().toISOString().split('T')[0]}.csv`,
+          content: stringifyCSV(allRows),
+          type: 'text/csv',
+        };
+      } else if (format === 'csv-individual') {
+        // Return multiple CSVs (we'll zip them on the client side or return them sequentially)
+        // For simplicity, we'll return a JSON object with entity-specific CSVs
+        const csvExports: Record<string, string> = {};
+
+        for (const entity of entities) {
+          const rows = csvData[entity];
+          csvExports[entity] = stringifyCSV(rows);
+        }
+
+        // Return metadata so the client can handle multi-file download
+        return {
+          filename: `soul-forge-export-${new Date().toISOString().split('T')[0]}`,
+          content: csvExports,
+          type: 'multi-csv',
+          isMultiple: true,
+        };
+      }
+
+      throw new Error('Unknown export format');
+    },
+    onSuccess: (result: Record<string, unknown>) => {
+      // Trigger file download on client side
+      if ((result as Record<string, unknown>).type === 'multi-csv') {
+        // Download multiple files
+        for (const [entity, content] of Object.entries((result as Record<string, unknown>).content as Record<string, unknown>)) {
+          const blob = new Blob([content as string], { type: 'text/csv' });
+          downloadFile(blob, `${entity}-${new Date().toISOString().split('T')[0]}.csv`);
+        }
+        toast({
+          title: 'Export Successful',
+          description: `Exported ${Object.keys((result as Record<string, unknown>).content as Record<string, unknown>).length} CSV files.`,
+        });
+      } else {
+        // Download single file
+        const blob = new Blob([(result as Record<string, unknown>).content as string], { type: (result as Record<string, unknown>).type as string });
+        downloadFile(blob, (result as Record<string, unknown>).filename as string);
+
+        toast({
+          title: 'Export Successful',
+          description: `Exported as ${(result as Record<string, unknown>).type === 'application/json' ? 'JSON' : 'CSV'}.`,
+        });
+      }
+    },
+    onError: (error: Error) => {
+      console.error('Export error:', error);
+      toast({
+        title: 'Export Failed',
+        description: error.message || 'Failed to export data',
+>>>>>>> cf46c6e (Initial commit: project files)
         variant: 'destructive',
       });
     },
   });
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * Triggers a file download in the browser.
+ */
+export function downloadFile(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+>>>>>>> cf46c6e (Initial commit: project files)

@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+<<<<<<< HEAD
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@/lib/query-config';
 import { initializeUmami } from '@/lib/umami';
@@ -17,3 +18,9 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </QueryClientProvider>
 );
+=======
+import App from "./App.tsx";
+import "./index.css";
+
+createRoot(document.getElementById("root")!).render(<App />);
+>>>>>>> cf46c6e (Initial commit: project files)

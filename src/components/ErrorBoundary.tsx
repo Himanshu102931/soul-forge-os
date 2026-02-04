@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { AlertCircle, RefreshCw, Home, Code, Bug, Database, Wifi, Shield, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,11 +8,18 @@ interface Props {
   children: React.ReactNode;
   fallback?: React.ReactNode;
   onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
+=======
+import React, { Component, ErrorInfo, ReactNode } from 'react';
+
+interface Props {
+  children: ReactNode;
+>>>>>>> cf46c6e (Initial commit: project files)
 }
 
 interface State {
   hasError: boolean;
   error: Error | null;
+<<<<<<< HEAD
   errorInfo: React.ErrorInfo | null;
   errorType: 'unknown' | 'network' | 'permission' | 'validation' | 'auth' | 'storage' | 'chunking' | 'render' | 'data';
   retryCount: number;
@@ -467,6 +475,57 @@ export class ErrorBoundary extends React.Component<Props, State> {
                   <><br /><span className="text-amber-600">Retry count: {this.state.retryCount}</span></>
                 )}
               </p>
+=======
+  errorInfo: ErrorInfo | null;
+}
+
+export class ErrorBoundary extends Component<Props, State> {
+  public state: State = {
+    hasError: false,
+    error: null,
+    errorInfo: null,
+  };
+
+  public static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error, errorInfo: null };
+  }
+
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    this.setState({
+      error,
+      errorInfo,
+    });
+  }
+
+  public render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-background p-4">
+          <div className="max-w-2xl w-full bg-card border border-border rounded-lg p-6">
+            <h1 className="text-2xl font-bold text-destructive mb-4">Something went wrong</h1>
+            <div className="space-y-4">
+              <div>
+                <h2 className="font-semibold mb-2">Error:</h2>
+                <pre className="bg-muted p-3 rounded text-sm overflow-auto">
+                  {this.state.error?.toString()}
+                </pre>
+              </div>
+              {this.state.errorInfo && (
+                <div>
+                  <h2 className="font-semibold mb-2">Stack Trace:</h2>
+                  <pre className="bg-muted p-3 rounded text-xs overflow-auto max-h-96">
+                    {this.state.errorInfo.componentStack}
+                  </pre>
+                </div>
+              )}
+              <button
+                onClick={() => window.location.reload()}
+                className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
+              >
+                Reload Page
+              </button>
+>>>>>>> cf46c6e (Initial commit: project files)
             </div>
           </div>
         </div>

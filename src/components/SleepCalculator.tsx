@@ -77,7 +77,11 @@ export function SleepCalculator() {
       </motion.div>
 
       <Dialog open={open} onOpenChange={setOpen}>
+<<<<<<< HEAD
         <DialogContent className="sm:max-w-sm max-h-[90vh] overflow-y-auto p-4 sm:p-6">
+=======
+        <DialogContent className="sm:max-w-sm">
+>>>>>>> cf46c6e (Initial commit: project files)
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Moon className="w-5 h-5" />

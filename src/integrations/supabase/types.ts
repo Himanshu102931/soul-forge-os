@@ -101,6 +101,10 @@ export type Database = {
           frequency_days: number[]
           id: string
           is_bad_habit: boolean
+<<<<<<< HEAD
+=======
+          paused_at: string | null
+>>>>>>> cf46c6e (Initial commit: project files)
           sort_order: number
           title: string
           updated_at: string
@@ -114,6 +118,10 @@ export type Database = {
           frequency_days?: number[]
           id?: string
           is_bad_habit?: boolean
+<<<<<<< HEAD
+=======
+          paused_at?: string | null
+>>>>>>> cf46c6e (Initial commit: project files)
           sort_order?: number
           title: string
           updated_at?: string
@@ -127,6 +135,10 @@ export type Database = {
           frequency_days?: number[]
           id?: string
           is_bad_habit?: boolean
+<<<<<<< HEAD
+=======
+          paused_at?: string | null
+>>>>>>> cf46c6e (Initial commit: project files)
           sort_order?: number
           title?: string
           updated_at?: string
@@ -272,7 +284,11 @@ export type Database = {
       seed_user_plan: { Args: never; Returns: undefined }
     }
     Enums: {
+<<<<<<< HEAD
       habit_status: "completed" | "partial" | "skipped" | "missed"
+=======
+      habit_status: "completed" | "partial" | "skipped" | "missed" | "paused"
+>>>>>>> cf46c6e (Initial commit: project files)
       task_priority: "high" | "medium" | "low"
     }
     CompositeTypes: {

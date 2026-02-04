@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+<<<<<<< HEAD
 import { Button } from '@/components/ui/button';
 import { ChroniclesCalendar } from '@/components/chronicles/ChroniclesCalendar';
 import { PlayerStats } from '@/components/chronicles/PlayerStats';
@@ -124,6 +125,18 @@ export default function Chronicles() {
             </DropdownMenu>
           </div>
         </div>
+=======
+import { ChroniclesCalendar } from '@/components/chronicles/ChroniclesCalendar';
+import { PlayerStats } from '@/components/chronicles/PlayerStats';
+import { BarChart3, CalendarDays } from 'lucide-react';
+
+export default function Chronicles() {
+  return (
+    <div className="space-y-6 pb-28 md:pb-8">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <h1 className="text-xl md:text-2xl font-bold">Chronicles</h1>
+        <p className="text-sm text-muted-foreground">Your journey through time</p>
+>>>>>>> cf46c6e (Initial commit: project files)
       </motion.div>
 
       <Tabs defaultValue="stats" className="w-full">
@@ -156,6 +169,7 @@ export default function Chronicles() {
           </motion.div>
         </TabsContent>
       </Tabs>
+<<<<<<< HEAD
 
       {/* Recalculate XP Confirmation Dialog */}
       <AlertDialog open={showRecalculateDialog} onOpenChange={setShowRecalculateDialog}>
@@ -227,6 +241,8 @@ export default function Chronicles() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
     </div>
   );
 }

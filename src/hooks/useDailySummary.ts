@@ -2,7 +2,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLogicalDate } from '@/contexts/LogicalDateContext';
+<<<<<<< HEAD
 import { queryKeys, staleTimes } from '@/lib/query-config';
+=======
+import { queryKeys, STALE_TIMES } from '@/lib/query-config';
+>>>>>>> cf46c6e (Initial commit: project files)
 
 export interface DailySummary {
   id: string;
@@ -22,7 +26,12 @@ export function useTodaySummary() {
   const { logicalDate } = useLogicalDate();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: queryKeys.dailySummaries(user?.id || '', logicalDate, logicalDate),
+=======
+    queryKey: user ? queryKeys.dailySummary(user.id, logicalDate) : ['daily-summary'],
+    staleTime: STALE_TIMES.nightly,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -37,7 +46,10 @@ export function useTodaySummary() {
       return data as DailySummary | null;
     },
     enabled: !!user,
+<<<<<<< HEAD
     staleTime: staleTimes.realtime, // 30s - today's summary changes frequently
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
   });
 }
 
@@ -45,7 +57,12 @@ export function useDailySummaries() {
   const { user } = useAuth();
 
   return useQuery({
+<<<<<<< HEAD
     queryKey: queryKeys.dailySummaries(user?.id || ''),
+=======
+    queryKey: user ? queryKeys.dailySummaries(user.id) : ['daily-summaries'],
+    staleTime: STALE_TIMES.chronicles,
+>>>>>>> cf46c6e (Initial commit: project files)
     queryFn: async () => {
       if (!user) throw new Error('Not authenticated');
       
@@ -60,6 +77,7 @@ export function useDailySummaries() {
       return data as DailySummary[];
     },
     enabled: !!user,
+<<<<<<< HEAD
     staleTime: staleTimes.historical, // 1 hour - past summaries don't change
   });
 }
@@ -88,6 +106,8 @@ export function useRecentSummaries(days: number = 7) {
       return data as DailySummary[];
     },
     enabled: !!user,
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
   });
 }
 
@@ -100,6 +120,7 @@ export function useCreateDailySummary() {
     mutationFn: async (summary: Omit<DailySummary, 'id' | 'user_id' | 'date' | 'created_at' | 'updated_at'>) => {
       if (!user) throw new Error('Not authenticated');
       
+<<<<<<< HEAD
       // First, check if a summary already exists for today
       const { data: existing, error: fetchError } = await supabase
         .from('daily_summaries')
@@ -140,6 +161,8 @@ export function useCreateDailySummary() {
       }
 
       // Now upsert the summary (last one wins)
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
       const { data, error } = await supabase
         .from('daily_summaries')
         .upsert({
@@ -156,9 +179,16 @@ export function useCreateDailySummary() {
       return data as DailySummary;
     },
     onSuccess: () => {
+<<<<<<< HEAD
       queryClient.invalidateQueries({ queryKey: ['daily-summary'] });
       queryClient.invalidateQueries({ queryKey: ['daily-summaries'] });
       queryClient.invalidateQueries({ queryKey: ['profile'] });
+=======
+      if (user) {
+        queryClient.invalidateQueries({ queryKey: queryKeys.dailySummary(user.id, logicalDate) });
+        queryClient.invalidateQueries({ queryKey: queryKeys.allDailySummaries(user.id) });
+      }
+>>>>>>> cf46c6e (Initial commit: project files)
     },
   });
 }

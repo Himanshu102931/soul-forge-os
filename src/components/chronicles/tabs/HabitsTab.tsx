@@ -1,6 +1,10 @@
 import { useDayHabitLogs, useToggleHistoricalHabit } from '@/hooks/useChronicles';
 import { useAllHabits, Habit } from '@/hooks/useHabits';
+<<<<<<< HEAD
 import { Shield, Check, Circle, Pause } from 'lucide-react';
+=======
+import { Shield, Check, Circle } from 'lucide-react';
+>>>>>>> cf46c6e (Initial commit: project files)
 import { cn } from '@/lib/utils';
 import { HabitStatus, getNextHabitStatus } from '@/lib/rpg-utils';
 
@@ -28,7 +32,10 @@ export function HabitsTab({ date }: HabitsTabProps) {
       date,
       currentStatus,
       isBadHabit: habit.is_bad_habit,
+<<<<<<< HEAD
       xpReward: habit.xp_reward || 10,
+=======
+>>>>>>> cf46c6e (Initial commit: project files)
     });
   };
 
@@ -47,7 +54,11 @@ export function HabitsTab({ date }: HabitsTabProps) {
       case 'partial':
         return <Circle className="w-3 h-3 fill-current" />;
       case 'skipped':
+<<<<<<< HEAD
         return <Pause className="w-3 h-3" />;
+=======
+        return <Circle className="w-3 h-3" />;
+>>>>>>> cf46c6e (Initial commit: project files)
       default:
         return null;
     }

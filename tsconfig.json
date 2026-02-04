@@ -6,11 +6,20 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+<<<<<<< HEAD
     "noImplicitAny": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "allowJs": true,
     "noUnusedLocals": true,
     "strictNullChecks": true
+=======
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noUnusedLocals": false,
+    "strictNullChecks": false
+>>>>>>> cf46c6e (Initial commit: project files)
   }
 }

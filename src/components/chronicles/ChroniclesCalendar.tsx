@@ -4,7 +4,11 @@ import { format, isFuture, startOfDay, addMonths, subMonths, startOfMonth, endOf
 import { cn } from '@/lib/utils';
 import { DayDossier } from './DayDossier';
 import { getLogicalDate } from '@/lib/time-utils';
+<<<<<<< HEAD
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Pause } from 'lucide-react';
+=======
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from 'lucide-react';
+>>>>>>> cf46c6e (Initial commit: project files)
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -31,7 +35,11 @@ function useMonthHabitData(month: Date) {
 
       if (error) throw error;
 
+<<<<<<< HEAD
       // Group by date and calculate pause percentage
+=======
+      // Group by date and calculate skipped count
+>>>>>>> cf46c6e (Initial commit: project files)
       const dateMap: Record<string, { total: number; skipped: number }> = {};
       
       logs?.forEach(log => {
@@ -91,6 +99,7 @@ export function ChroniclesCalendar() {
   const allDays = [...paddingDays, ...daysInMonth, ...endPaddingDays];
   const today = getLogicalDate();
 
+<<<<<<< HEAD
   const getMoodStyles = (date: Date): { 
     moodColor: string | null; 
     habitStatus: 'completed' | 'good' | 'partial' | 'paused' | 'missed' | null;
@@ -133,6 +142,62 @@ export function ChroniclesCalendar() {
       moodColor,
       habitStatus,
       text: 'text-foreground'
+=======
+  const getMoodStyles = (date: Date): { bg: string; text: string; glow: string; border: string; indicator?: 'green' | 'yellow' | 'red' | 'blue' } => {
+    const dateStr = format(date, 'yyyy-MM-dd');
+    const mood = moodMap.get(dateStr);
+    const dayHabitData = habitData?.[dateStr];
+    
+    // Check if more than 50% of habits are skipped (blue indicator)
+    if (dayHabitData && dayHabitData.total > 0) {
+        const skipPercentage = dayHabitData.skipped / dayHabitData.total;
+        if (skipPercentage > 0.5) {
+        return { 
+          bg: 'bg-blue-500/20', 
+          text: 'text-blue-400', 
+          glow: 'shadow-[0_0_20px_rgba(59,130,246,0.4)]', 
+          border: 'border-blue-500/60',
+          indicator: 'blue'
+        };
+      }
+    }
+    
+    if (mood === null || mood === undefined) {
+      const hasData = summaries?.some(s => s.date === dateStr);
+      if (hasData) return { 
+        bg: 'bg-secondary/60', 
+        text: 'text-muted-foreground', 
+        glow: '', 
+        border: 'border-border/50' 
+      };
+      return { bg: '', text: 'text-foreground', glow: '', border: 'border-transparent' };
+    }
+    
+    // Mood scale: 1-10 (we save 1-5 * 2 = 2,4,6,8,10)
+    // Great day: 8-10 (green)
+    // Okay day: 5-7 (yellow)  
+    // Bad day: 1-4 (red)
+    if (mood >= 8) return { 
+      bg: 'bg-emerald-500/20', 
+      text: 'text-emerald-400', 
+      glow: 'shadow-[0_0_20px_rgba(16,185,129,0.4)]', 
+      border: 'border-emerald-500/60',
+      indicator: 'green'
+    };
+    if (mood >= 5) return { 
+      bg: 'bg-yellow-500/20', 
+      text: 'text-yellow-400', 
+      glow: 'shadow-[0_0_20px_rgba(234,179,8,0.4)]', 
+      border: 'border-yellow-500/60',
+      indicator: 'yellow'
+    };
+    return { 
+      bg: 'bg-red-500/20', 
+      text: 'text-red-400', 
+      glow: 'shadow-[0_0_20px_rgba(239,68,68,0.4)]', 
+      border: 'border-red-500/60',
+      indicator: 'red'
+>>>>>>> cf46c6e (Initial commit: project files)
     };
   };
 
@@ -193,6 +258,7 @@ export function ChroniclesCalendar() {
                 const isDisabled = isFuture(startOfDay(date));
                 const isToday = format(today, 'yyyy-MM-dd') === dateStr;
                 const isSelected = selectedDate && format(selectedDate, 'yyyy-MM-dd') === dateStr;
+<<<<<<< HEAD
                 const styles = getMoodStyles(date);
                 
                 // Determine background color based on habit status
@@ -206,6 +272,9 @@ export function ChroniclesCalendar() {
                     default: return 'transparent';
                   }
                 };
+=======
+                const moodStyles = getMoodStyles(date);
+>>>>>>> cf46c6e (Initial commit: project files)
                 
                 return (
                   <button
@@ -214,6 +283,7 @@ export function ChroniclesCalendar() {
                     onClick={() => {
                       if (!isDisabled && isCurrentMonth) setSelectedDate(date);
                     }}
+<<<<<<< HEAD
                     style={{
                       borderWidth: '3px',
                       borderColor: isSelected ? 'hsl(var(--primary))' : (styles.moodColor || '#4b5563'),
@@ -231,12 +301,39 @@ export function ChroniclesCalendar() {
                   >
                     {/* Date number */}
                     <span className="relative z-10 font-semibold">{date.getDate()}</span>
+=======
+                    className={cn(
+                      "aspect-square flex items-center justify-center rounded-xl font-medium text-sm transition-all duration-200 border relative",
+                      !isCurrentMonth && "opacity-30 pointer-events-none",
+                      isDisabled && isCurrentMonth && "opacity-40 cursor-not-allowed",
+                      !isDisabled && isCurrentMonth && "hover:scale-105 cursor-pointer",
+                      isSelected && "bg-primary text-primary-foreground border-primary ring-2 ring-primary/50 ring-offset-2 ring-offset-black/40 scale-105",
+                      !isSelected && isCurrentMonth && moodStyles.bg,
+                      !isSelected && isCurrentMonth && moodStyles.text,
+                      !isSelected && isCurrentMonth && moodStyles.glow,
+                      !isSelected && isCurrentMonth && `border ${moodStyles.border}`,
+                      isToday && !isSelected && "ring-2 ring-primary/70 ring-offset-1 ring-offset-black/40"
+                    )}
+                  >
+                    {date.getDate()}
+                    {/* Mood indicator dot */}
+                    {moodStyles.indicator && !isSelected && isCurrentMonth && (
+                      <span className={cn(
+                        "absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full",
+                        moodStyles.indicator === 'green' && "bg-emerald-400",
+                        moodStyles.indicator === 'yellow' && "bg-yellow-400",
+                        moodStyles.indicator === 'red' && "bg-red-400",
+                        moodStyles.indicator === 'blue' && "bg-blue-400"
+                      )} />
+                    )}
+>>>>>>> cf46c6e (Initial commit: project files)
                   </button>
                 );
               })}
             </div>
 
             {/* Legend */}
+<<<<<<< HEAD
             <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-white/10">
               <div className="text-xs font-semibold text-muted-foreground uppercase">Border = Mood</div>
               <div className="flex flex-wrap items-center justify-center gap-4">
@@ -272,6 +369,24 @@ export function ChroniclesCalendar() {
                   <div className="w-3 h-3 rounded bg-blue-500/40" />
                   <span className="text-xs text-muted-foreground">Rest Day</span>
                 </div>
+=======
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-6 pt-4 border-t border-white/10">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-emerald-500/40 border border-emerald-500/60" />
+                <span className="text-xs text-muted-foreground">Great Day</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-yellow-500/40 border border-yellow-500/60" />
+                <span className="text-xs text-muted-foreground">Okay Day</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/40 border border-red-500/60" />
+                <span className="text-xs text-muted-foreground">Rough Day</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-blue-500/40 border border-blue-500/60" />
+                <span className="text-xs text-muted-foreground">Rest Day (50%+ Skipped)</span>
+>>>>>>> cf46c6e (Initial commit: project files)
               </div>
             </div>
           </div>
